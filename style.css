@@ -1,0 +1,507 @@
+/* --- 전역 변수 설정 --- */
+:root { 
+    --gold: #d4af37; 
+    --bg: #0a0a0c; 
+    --text: #e0e0e0; 
+}
+
+/* --- 기본 레이아웃 --- */
+body { 
+    margin: 0; 
+    padding: 0; 
+    background: var(--bg); 
+    color: var(--text); 
+    font-family: 'Georgia', serif; 
+    overflow-x: hidden; 
+}
+
+/* 배경 별자리 효과 */
+.stars { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: -1; 
+}
+
+/* --- 헤더 & 광고 영역 --- */
+header { 
+    text-align: center; 
+    padding: 50px 20px; 
+    border-bottom: 2px solid var(--gold); 
+    background: rgba(0,0,0,0.8); 
+}
+
+h1 { 
+    color: var(--gold); 
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.5); 
+    margin: 0; 
+}
+
+.ad-slot { 
+    width: 100%; 
+    max-width: 728px; 
+    height: 90px; 
+    background: rgba(255,255,255,0.05); 
+    margin: 20px auto; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    border: 1px dashed #444; 
+    color: #666; 
+    font-size: 12px; 
+}
+
+/* --- 카드 게임 영역 --- */
+.container { 
+    max-width: 600px; 
+    margin: 40px auto; 
+    text-align: center; 
+    padding: 0 20px; 
+}
+
+.input-group { 
+    margin-bottom: 30px; 
+}
+
+input { 
+    background: #1a1a2e; 
+    border: 1px solid var(--gold); 
+    color: white; 
+    padding: 12px 20px; 
+    border-radius: 25px; 
+    width: 80%; 
+    outline: none; 
+    font-size: 1rem; 
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); 
+}
+
+/* 카드 애니메이션 */
+.card-wrapper { 
+    perspective: 1000px; 
+    /* 가로를 살짝 줄여서 세로 380px 비율에 맞춤 */
+    width: 214px; 
+    aspect-ratio: 9 / 16; 
+    margin: 0 auto 30px; 
+    cursor: pointer; 
+}
+
+/* 수정된 .card-inner */
+.card-inner { 
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+    transform-style: preserve-3d; 
+    /* overflow: hidden; 이 있다면 절대 금물! 빛을 다 잘라먹습니다. */
+}
+
+.card-inner.flipped { 
+    transform: rotateY(180deg); 
+}
+
+.card-front, .card-back { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    backface-visibility: hidden; 
+    border-radius: 15px; 
+    border: 1px solid var(--gold); 
+    box-shadow: 0 0 20px rgba(0,0,0,0.8); 
+}
+
+.card-back { 
+    background: #222; 
+    background-position: center; 
+    background-size: cover; 
+}
+
+.card-front { 
+    transform: rotateY(180deg); 
+    background: #1a1a1a; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    /* 이미지가 절대 찌그러지지 않고 9:16 박스에 꽉 차게 */
+    object-fit: cover; 
+    background-color: #000; 
+    border-radius: 15px; 
+    display: block;
+}
+
+/* --- 결과 영역 & AI 해석 가독성 --- */
+.result-area { 
+    margin-top: 20px; 
+    min-height: 100px; 
+    padding: 20px; 
+    background: rgba(255,255,255,0.03); 
+    border-radius: 15px; 
+}
+
+.answer { 
+    font-size: 2.5rem; 
+    font-weight: bold; 
+    color: var(--gold); 
+    margin-bottom: 10px; 
+    text-shadow: 0 0 10px var(--gold); 
+}
+
+.ai-source { 
+    font-size: 0.85rem; 
+    color: #888; 
+    margin-bottom: 15px; 
+    font-style: italic; 
+    letter-spacing: 1px; 
+}
+
+.interpretation { 
+    line-height: 1.9; 
+    font-size: 1.05rem; 
+    color: #ececec; 
+    text-align: left; 
+    background: rgba(255, 255, 255, 0.08); 
+    padding: 25px; 
+    border-radius: 15px; 
+    margin-top: 15px; 
+    word-break: keep-all; /* 한글 단어 끊김 방지 */
+}
+
+/* 해석 내부의 소제목([ Love ] 등) 스타일 */
+.interpretation strong {
+    color: var(--gold);
+    display: block;
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    padding-bottom: 5px;
+}
+
+/* 하단 세부 텍스트 */
+.detail-text {
+    font-size: 0.95rem;
+    margin-top: 10px;
+    border-top: 1px solid rgba(212, 175, 55, 0.3);
+    padding-top: 10px;
+    color: #bbb;
+}
+
+/* --- 버튼 스타일 --- */
+button { 
+    background: var(--gold); 
+    color: black; 
+    border: none; 
+    padding: 12px 30px; 
+    border-radius: 25px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: 0.3s; 
+}
+
+button:hover { 
+    transform: scale(1.05); 
+    background: #f1c40f; 
+    box-shadow: 0 0 15px var(--gold); 
+}
+
+/* --- SEO 컨텐츠 영역 --- */
+.seo-content { 
+    max-width: 800px; 
+    margin: 80px auto; 
+    padding: 40px; 
+    text-align: left; 
+    border-top: 1px solid #333; 
+    line-height: 1.8; 
+    color: #bbb;
+    background: rgba(10, 10, 12, 0.9); 
+    border-radius: 20px;
+}
+
+.seo-content h2, .seo-content h3 { 
+    color: var(--gold); 
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); 
+    margin-top: 35px; 
+}
+
+.seo-content strong { 
+    color: var(--gold); 
+    font-weight: bold; 
+}
+
+.seo-content li { 
+    margin-bottom: 12px; 
+}
+
+/* --- AI 해석 섹션 가독성 강화 (기존 스타일 유지하며 추가) --- */
+
+/* 1. 해석 텍스트가 들어가는 전체 컨테이너 여백 조정 */
+#descText {
+    line-height: 1.8;      /* 줄 간격을 넓게 */
+    font-size: 1.05rem;    /* 읽기 적당한 크기 */
+    text-align: left;
+    word-break: keep-all;  /* 한글 단어 단위 줄바꿈 */
+    color: #ececec;
+}
+
+/* 2. 자바스크립트로 생성된 섹션 제목 스타일 */
+.section-title {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    color: var(--gold);    /* 기존 설정된 골드 변수 사용 */
+    font-size: 1.3rem;
+    margin: 30px 0 20px 0;
+    padding: 10px;
+    background: rgba(212, 175, 55, 0.1); /* 살짝 배경색을 주어 구분 */
+    border-radius: 8px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+/* 3. 문단(p) 사이의 확실한 여백 (모바일 가독성 핵심) */
+.section-p {
+    margin-bottom: 18px; /* 문장(문단) 사이 간격 */
+    line-height: 1.7;    /* 줄 간격 */
+    display: block;      /* 확실하게 줄바꿈 */
+}
+
+/* 4. 질문 키워드가 없을 때 보여주는 전체 텍스트용 */
+.full-text {
+    line-height: 1.8;
+    white-space: pre-wrap; /* 줄바꿈 유지 */
+}
+
+/* --- 신비로운 로딩 레이어 --- */
+.mystic-loader {
+    display: none; /* 기본은 숨김 */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    text-align: center;
+    color: var(--gold);
+    font-style: italic;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+}
+
+.loader-text {
+    font-size: 1.4rem;
+    margin-top: 20px;
+    animation: pulse 1.5s infinite;
+}
+
+/* 카드가 섞이는 느낌의 애니메이션 */
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    50% { transform: translate(-1px, 2px) rotate(1deg); }
+    100% { transform: translate(1px, 1px) rotate(0deg); }
+}
+
+.shaking {
+    animation: shake 0.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+/* 로딩 중 배경 어둡게 처리 (오버레이) */
+#mysticLoader::before {
+    content: "";
+    position: fixed;
+    top: -1000%;
+    left: -1000%;
+    width: 2000%;
+    height: 2000%;
+    background: rgba(0, 0, 0, 0.7); /* 배경을 어둡게 하여 로딩 메시지에 집중 */
+    z-index: -1;
+}
+
+/* 입력창 테두리 빛나는 애니메이션 (천천히 일렁이는 버전) */
+#question {
+    transition: all 0.8s ease; /* 전환 속도도 조금 더 부드럽게 */
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+#question:focus {
+    outline: none;
+    border-color: var(--gold);
+    /* 기본 그림자를 약간 더 넓게 설정 */
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    
+    /* 2s(2초)였던 시간을 4s(4초)로 늘려 훨씬 느리게 만듭니다 */
+    /* ease-in-out을 추가해 시작과 끝이 아주 부드럽습니다 */
+    animation: glow-pulse 4s ease-in-out infinite; 
+}
+
+@keyframes glow-pulse {
+    0% { 
+        box-shadow: 0 0 8px rgba(212, 175, 55, 0.3), inset 0 0 5px rgba(212, 175, 55, 0.1); 
+    }
+    50% { 
+        /* 가장 밝아졌을 때의 범위를 더 넓고 깊게 조절 */
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.7), inset 0 0 10px rgba(212, 175, 55, 0.3); 
+    }
+    100% { 
+        box-shadow: 0 0 8px rgba(212, 175, 55, 0.3), inset 0 0 5px rgba(212, 175, 55, 0.1); 
+    }
+}
+
+/* 1. 카드 본체 설정 (그림자가 뚫고 나오도록 설정) */
+.card-inner {
+    position: relative;
+    border-radius: 15px;
+    /* 카드 자체에도 아주 미세한 금색 광택을 줍니다 */
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 2. 카드 뒤에서 뿜어져 나오는 신비로운 아우라 (Before 가상 요소) */
+/* 수정된 .card-inner::before */
+.card-inner::before {
+    content: '';
+    position: absolute;
+    top: -20px; left: -20px; right: -20px; bottom: -20px; /* 범위를 더 넓게 */
+    z-index: -1; 
+    
+    background: radial-gradient(circle, 
+                rgba(212, 175, 55, 0.9) 0%, 
+                rgba(212, 175, 55, 0.4) 50%, 
+                transparent 75%);
+    
+    border-radius: 30px;
+    filter: blur(30px); /* 번짐을 더 강하게 */
+    opacity: 0.4;
+    
+    /* 중요: 3D 환경에서 카드보다 아주 살짝 뒤에 배치함 */
+    transform: translateZ(-1px); 
+    
+    animation: amazing-aura 5s ease-in-out infinite;
+}
+
+/* 3. 아우라 일렁임 애니메이션 */
+@keyframes amazing-aura {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(1) rotate(0deg);
+        filter: blur(20px);
+    }
+    33% {
+        opacity: 0.7;
+        transform: scale(1.1) rotate(2deg); /* 살짝 커지고 비틀어짐 */
+        filter: blur(30px);
+    }
+    66% {
+        opacity: 0.5;
+        transform: scale(0.95) rotate(-2deg); /* 살짝 작아짐 */
+        filter: blur(25px);
+    }
+}
+
+/* 4. 마우스를 올렸을 때 에너지가 폭발하는 효과 */
+.card-wrapper:hover .card-inner::before {
+    opacity: 0.9;
+    filter: blur(45px); /* 번짐을 더 크게 */
+    transform: translateZ(-1px) scale(1.15); /* 빛이 확 커짐 */
+    transition: all 0.5s ease-out;
+}
+
+/* 카드가 뒤집힐 때 터지는 섬광 효과 */
+.card-inner.flash-effect::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: white;
+    border-radius: 15px;
+    z-index: 10;
+    pointer-events: none; /* 클릭 방해 금지 */
+    animation: card-flash 0.6s ease-out forwards;
+}
+
+@keyframes card-flash {
+    0% { opacity: 0; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.1); filter: blur(10px); }
+    100% { opacity: 0; transform: scale(1.2); }
+}
+
+.keyword-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0 25px 0;
+}
+
+.key-btn {
+    background: rgba(255, 215, 0, 0.05);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.key-btn:hover {
+    background: var(--gold);
+    color: black;
+    box-shadow: 0 0 10px var(--gold);
+}
+
+
+.support-section img:hover {
+    transform: scale(1.05); /* 마우스 올리면 살짝 커지는 효과 */
+}
+
+#save-btn {
+    background: linear-gradient(45deg, #d4af37, #f9f295);
+    color: #000;
+    font-weight: bold;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    transition: transform 0.2s;
+}
+
+#save-btn:hover {
+    transform: scale(1.05);
+}
+
+/* 두 버튼을 똑같은 금색 라운드 버튼으로 강제 통일 */
+/* 버튼 디자인 최종장: 쌍둥이 버튼 */
+#save-btn, .reset-btn {
+    background: linear-gradient(45deg, #d4af37, #f9f295) !important;
+    color: black !important;
+    width: 160px !important; /* 가로 고정 */
+    height: 48px !important; /* 세로 고정 */
+    font-size: 0.9rem !important;
+    font-weight: bold !important;
+    border-radius: 50px !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* 텍스트와 이모지 사이 간격 */
+    margin: 10px 5px !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4) !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+/* 호버 효과 통일 */
+#save-btn:hover, .reset-btn:hover {
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5) !important;
+}
+
