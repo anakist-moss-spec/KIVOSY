@@ -5,7 +5,7 @@
     --text: #e0e0e0; 
 }
 
-/* --- 기본 레이아웃 --- */
+/* --- 기본 레이아웃 수정 --- */
 body { 
     margin: 0; 
     padding: 0; 
@@ -13,6 +13,12 @@ body {
     color: var(--text); 
     font-family: 'Georgia', serif; 
     overflow-x: hidden; 
+
+    /* [여기가 핵심 추가!] */
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* 모든 자식 요소를 가로 중앙으로! */
+    min-height: 100vh;
 }
 
 /* 배경 별자리 효과 */
@@ -27,8 +33,9 @@ body {
 
 /* --- 헤더 & 광고 영역 --- */
 header { 
+    width: 100%;           /* 너비를 100%로 확장 */
     text-align: center; 
-    padding: 50px 20px; 
+    padding: 50px 0;       /* 좌우 패딩 대신 0 설정 */
     border-bottom: 2px solid var(--gold); 
     background: rgba(0,0,0,0.8); 
 }
@@ -274,18 +281,16 @@ button:hover {
     white-space: pre-wrap; /* 줄바꿈 유지 */
 }
 
-/* --- 신비로운 로딩 레이어 --- */
-.mystic-loader {
-    display: none; /* 기본은 숨김 */
+/* 로딩 중 배경 어둡게 처리 (오버레이) */
+#kivosyLoader::before {
+    content: "";
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    text-align: center;
-    color: var(--gold);
-    font-style: italic;
-    text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+    top: -1000%;
+    left: -1000%;
+    width: 2000%;
+    height: 2000%;
+    background: rgba(0, 0, 0, 0.85); /* 배경을 더 진하게 해서 몰입감 업! */
+    z-index: -1;
 }
 
 .loader-text {
@@ -313,16 +318,18 @@ button:hover {
     100% { opacity: 0.5; }
 }
 
-/* 로딩 중 배경 어둡게 처리 (오버레이) */
-#mysticLoader::before {
-    content: "";
+/* --- 신비로운 로딩 레이어 (최종 수정본) --- */
+.kivosy-loader {
+    display: none;      /* 전체 로더(글자+배경)를 기본적으로 숨김 */
     position: fixed;
-    top: -1000%;
-    left: -1000%;
-    width: 2000%;
-    height: 2000%;
-    background: rgba(0, 0, 0, 0.7); /* 배경을 어둡게 하여 로딩 메시지에 집중 */
-    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    text-align: center;
+    color: var(--gold);
+    font-style: italic;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
 }
 
 /* 입력창 테두리 빛나는 애니메이션 (천천히 일렁이는 버전) */
@@ -505,3 +512,40 @@ button:hover {
     box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5) !important;
 }
 
+/* --- 푸터 디자인 (CSS로 모두 이사) --- */
+.kivosy-footer {
+    width: 100%;            /* 선이 양옆으로 끝까지! */
+    margin-top: 80px; 
+    padding: 60px 0; 
+    text-align: center; 
+    border-top: 1px solid var(--gold); /* 시원하게 뻗는 황금선 */
+    color: #888; 
+    font-size: 0.8rem;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.privacy-link-wrapper {
+    margin-top: 15px;
+}
+
+.kivosy-footer a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+/* 프라이버시 정책 박스 */
+.privacy-box {
+    display: none; 
+    text-align: left; 
+    max-width: 800px; 
+    margin: 30px auto; 
+    padding: 30px; 
+    background: rgba(255, 255, 255, 0.05); 
+    border-radius: 15px; 
+    line-height: 1.8;
+}
+
+.privacy-box h3 {
+    color: var(--gold);
+    margin-top: 0;
+}

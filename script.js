@@ -1,8 +1,8 @@
 // --- 1. Settings & English Categories ---
-const mysticMessages = [
-    "Aligning with the universe's frequency...", 
-    "Reading your cosmic energy...", 
-    "Shuffling the cards of destiny..."
+const kivosyMessages = [
+    "KIVOSY is aligning with the universe...", 
+    "Reading your cosmic energy via KIVOSY...", 
+    "KIVOSY is shuffling the cards of destiny..."
 ];
 
 const categories = {
@@ -14,7 +14,7 @@ const categories = {
 async function drawCard() {
     const inner = document.getElementById('cardInner');
     const questionInput = document.getElementById('question');
-    const loader = document.getElementById('mysticLoader');
+    const loader = document.getElementById('kivosyLoader');
     const loaderMsg = document.getElementById('loaderMessage');
     
     let matchedSection = null; 
