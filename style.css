@@ -559,3 +559,37 @@ button:hover {
     transition: all 0.2s ease;
     cursor: pointer;
 }
+
+.daily-stamp {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    padding: 5px 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    transform: rotate(-15deg);
+    opacity: 0.8;
+    pointer-events: none;
+    background: rgba(0,0,0,0.3);
+    border-radius: 5px;
+    z-index: 100;
+}
+
+.daily-oracle-banner {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    background: rgba(255, 215, 0, 0.1); /* 살짝 금빛 감도는 배경 */
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    margin: 10px auto;
+    max-width: 500px;
+    padding: 15px;
+}
+
+.daily-oracle-banner:hover {
+    transform: scale(1.02);
+    background: rgba(255, 215, 0, 0.2);
+}

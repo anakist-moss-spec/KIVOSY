@@ -37,7 +37,6 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
-
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP46CVMP"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -53,9 +52,15 @@
     <div class="ad-slot">AD_PLACEHOLDER (728x90)</div>
 
     <div id="kivosyLoader" class="kivosy-loader">
-
         <div class="loader-text" id="loaderMessage">KIVOSY is reading the stars for you...</div>
+    </div>
 
+    <div class="daily-oracle-banner" onclick="DailyFortune.handleRequest('Daily')">
+        <div class="banner-content">
+            <span class="sparkle">✨</span>
+            <strong>Reveal Your Daily Destiny</strong>
+            <p>One card, one destiny. Only once a day.</p>
+        </div>
     </div>
 
     <div class="container">
@@ -64,10 +69,10 @@
         </div>
 
         <div class="keyword-buttons">
-            <button class="key-btn" onclick="setQuestion('Will I find true love soon?')">#Love 💖</button>
-            <button class="key-btn" onclick="setQuestion('Will I get a promotion or raise?')">#Money 💰</button>
-            <button class="key-btn" onclick="setQuestion('Should I start this new project?')">#Success 🚀</button>
-            <button class="key-btn" onclick="setQuestion('Is today a lucky day for me?')">#Daily ✨</button>
+            <button class="key-btn" onclick="setQuestion('Will I find true love soon?'); DailyFortune.handleRequest('Love')">#Love 💖</button>
+            <button class="key-btn" onclick="setQuestion('Will I get a promotion or raise?'); DailyFortune.handleRequest('Money')">#Money 💰</button>
+            <button class="key-btn" onclick="setQuestion('Should I start this new project?'); DailyFortune.handleRequest('Success')">#Success 🚀</button>
+            <button class="key-btn" onclick="setQuestion('Is today a lucky day for me?'); DailyFortune.handleRequest('Daily')">#Daily ✨</button>
         </div>
 
         <div class="card-wrapper" onclick="drawCard()">
@@ -111,7 +116,8 @@
                         style="height: 40px !important; width: auto !important; transition: transform 0.3s ease;">
                 </a>
             </div>
-        </div> </div>
+        </div> 
+    </div>
 
     <div class="ad-slot">AD_PLACEHOLDER (728x90)</div>
 
@@ -125,7 +131,7 @@
         </div>
 
         <div id="history-gallery" class="history-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px;">
-            </div>
+        </div>
     </section>
 
     <article class="seo-content">
@@ -236,18 +242,16 @@
         };
 
     </script>
+
     
     <footer class="kivosy-footer">
         <p>&copy; 2026 KIVOSY Yes/No Tarot. All rights reserved.</p>
         <p class="privacy-link-wrapper">
             <a href="javascript:void(0)" onclick="togglePrivacy()">Privacy Policy</a>
         </p>
-        
         <div id="privacyContent" class="privacy-box">
             <h3>Privacy Policy</h3>
-            <p>Your privacy is important to us. This website does not collect, store, or share any personal data or questions you enter.</p>
-            <p><strong>Cookies & Ads:</strong> We use Google AdSense to serve ads. Google may use cookies to serve ads based on your prior visits to this or other websites.</p>
-            <p><strong>Data Storage:</strong> We only use LocalStorage on your browser to keep your tarot history. This data never leaves your device.</p>
+            <p>Your privacy is important to us...</p>
         </div>
     </footer>
 
@@ -259,8 +263,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
 
     <script src="tarotData.js"></script>
+
+    <script src="daily-fortune.js"></script> 
+
     <script src="script.js"></script>
-
-
 </body>
 </html>
