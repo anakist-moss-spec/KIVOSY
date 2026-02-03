@@ -549,3 +549,13 @@ button:hover {
     color: var(--gold);
     margin-top: 0;
 }
+
+/* --- 추가 질문 버튼 호버 스타일 (style.css 맨 아래에 추가) --- */
+.key-btn:hover {
+    background: rgba(255, 215, 0, 0.15) !important; /* 배경은 연한 금색 */
+    color: #d4af37 !important; /* 글자색을 금색(#d4af37)으로 강제 고정! */
+    border-color: #d4af37 !important;
+    transform: translateY(-2px); /* 마우스 올리면 살짝 위로 */
+    transition: all 0.2s ease;
+    cursor: pointer;
+}

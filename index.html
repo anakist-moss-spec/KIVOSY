@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5981094525589755"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5981094525589755" crossorigin="anonymous"></script>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TP46CVMP');</script>
 
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TP46CVMP');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIVOSY | Yes/No Tarot - Instant Divine Guidance ✨</title>
     
+    <title>KIVOSY | Premium AI Yes No Tarot - Instant Cosmic Guidance</title>
+    <meta name="description" content="Experience the future of tarot with KIVOSY. Get instant, deep insights from multiple AI personas with luxury golden line art cards. Your daily cosmic compass for accurate Yes/No answers.">
+    <meta name="keywords" content="yes no tarot, free tarot reading, instant tarot, online tarot oracle, AI tarot, KIVOSY, golden tarot">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="KIVOSY: Your Daily Cosmic Compass">
+    <meta property="og:description" content="Multiple AIs analyze your destiny. Flip your golden card now and get the Universe's direct guidance.">
+    <meta property="og:image" content="https://kivosy.pages.dev/img/og-preview.png"> <meta property="og:url" content="https://kivosy.pages.dev">
+    <meta name="twitter:card" content="summary_large_image">
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "kivosy Yes/No Tarot",
+      "name": "KIVOSY AI Yes/No Tarot",
       "url": "https://kivosy.pages.dev",
       "applicationCategory": "EntertainmentApplication",
-      "about": "Instant yes or no tarot card reading for daily guidance.",
+      "about": "Instant yes or no tarot card reading for daily guidance powered by multiple AI interpretations.",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -28,10 +32,9 @@
       }
     }
     </script>
-    <meta name="description" content="Seek clarity with our free online Yes/No Tarot. Get instant, accurate answers for your daily decisions with 78 traditional tarot cards.">
-    <meta name="keywords" content="yes no tarot, free tarot reading, instant tarot, online tarot oracle">
     
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 
@@ -89,6 +92,13 @@
             </div>
 
             <div class="interpretation" id="descText">Sample interpretation...</div>
+
+            <button id="readMoreBtn" class="action-btn" style="display: none; margin: 15px auto; background: none; border: 1px solid var(--gold); color: var(--gold); padding: 8px 20px; cursor: pointer;">
+                Read More... ✨
+            </button>
+
+            <div id="follow-up-container" style="margin-top: 30px; display: flex; flex-direction: column; gap: 10px;">
+            </div>
             
             <div class="support-section" style="text-align: center; margin-top: 40px; padding: 20px; border-top: 1px rgba(255,215,0,0.1) solid;">
                 <button class="action-btn reset-btn" onclick="resetGame()">Try Again 🔮</button>
@@ -104,6 +114,19 @@
         </div> </div>
 
     <div class="ad-slot">AD_PLACEHOLDER (728x90)</div>
+
+    <section id="history-section" class="container" style="margin-top: 80px; border-top: 2px solid rgba(212, 175, 55, 0.2); padding-top: 40px;">
+        <h2 style="color: var(--gold); text-align: center; margin-bottom: 30px;">📜 Your Cosmic Records</h2>
+        
+        <div id="energy-summary"></div> 
+
+        <div class="chart-container" style="background: rgba(255,215,0,0.05); padding: 20px; border-radius: 15px; margin-bottom: 30px; height: 250px; position: relative;">
+            <canvas id="destinyChart"></canvas>
+        </div>
+
+        <div id="history-gallery" class="history-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px;">
+            </div>
+    </section>
 
     <article class="seo-content">
         <h2>How Does KIVOSY Yes or No Tarot Work?</h2>
@@ -213,10 +236,7 @@
         };
 
     </script>
-
-    <script src="tarotData.js"></script>
-    <script src="script.js"></script>
-
+    
     <footer class="kivosy-footer">
         <p>&copy; 2026 KIVOSY Yes/No Tarot. All rights reserved.</p>
         <p class="privacy-link-wrapper">
@@ -234,9 +254,13 @@
     <audio id="sound-click" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" preload="auto"></audio>
     <audio id="sound-flip" src="https://assets.mixkit.co/active_storage/sfx/2014/2014-preview.mp3" preload="auto"></audio>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>   
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>    
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+
+    <script src="tarotData.js"></script>
+    <script src="script.js"></script>
+
+
 </body>
 </html>
