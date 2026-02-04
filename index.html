@@ -206,7 +206,7 @@
         // 뒷면 이미지 랜덤 설정 함수
         function setRandomBack() {
             // 이제 실제 경로인 img/tarot/back/ 으로 연결합니다!
-            const backImages = ['img/tarot/back/back1.png', 'img/tarot/back/back2.png']; //← 내컴퓨터 & 깃허브 경로
+            const backImages = ['img/tarot/back/back1.webp', 'img/tarot/back/back2.webp']; //← 내컴퓨터 & 깃허브 경로
             const randomBack = backImages[Math.floor(Math.random() * backImages.length)];
             const cardBack = document.querySelector('.card-back');
             if (cardBack) cardBack.style.backgroundImage = `url('${randomBack}')`;

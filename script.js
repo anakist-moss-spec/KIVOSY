@@ -112,7 +112,7 @@ async function drawCard() {
         const finalHTML = introMessage + bodyHTML;
 
         // 데이터 삽입
-        document.getElementById('cardImage').src = `img/tarot/gold/${cardData.img}.png`;
+        document.getElementById('cardImage').src = `img/tarot/gold/${cardData.img}.webp`;
         document.getElementById('answerText').innerText = cardData.ans;
         document.getElementById('cardName').innerText = cardData.name;
         document.getElementById('aiSource').innerText = `— Interpretation by ${randomAI} —`;
@@ -173,9 +173,6 @@ async function drawCard() {
         let tarotHistory = JSON.parse(localStorage.getItem('tarotHistory') || '[]');
         tarotHistory.push(historyEntry);
         if (tarotHistory.length > 50) tarotHistory.shift();
-        localStorage.setItem('tarotHistory', JSON.stringify(tarotHistory));
-
-        // ... 기존 히스토리 저장 로직 ...
         localStorage.setItem('tarotHistory', JSON.stringify(tarotHistory));
 
         // ✨ 추가: 저장하자마자 아래 대시보드 업데이트!
@@ -321,8 +318,8 @@ function saveCardImage() {
         ctx.fillText("KIVOSY.com", canvas.width / 2, canvas.height - 70);
 
         const link = document.createElement('a');
-        link.download = `KIVOSY_Fate_${cardName}.png`;
-        link.href = canvas.toDataURL("image/png");
+        link.download = `KIVOSY_Fate_${cardName}.webp`;
+        link.href = canvas.toDataURL("image/webp");
         link.click();
     };
 }
@@ -363,12 +360,15 @@ function updateHistoryUI() {
         const dateStr = `${months[dateObj.getMonth()]} ${dateObj.getDate().toString().padStart(2, '0')}`;
 
         cardThumb.innerHTML = `
-            <img src="img/tarot/gold/${item.cardImg}.png" style="width: 100%; border-radius: 5px; margin-bottom: 8px; filter: grayscale(0.3);">
-            <div style="color: var(--gold); font-weight: bold; font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${item.cardName}</div>
-            <div style="color: #666; font-size: 0.65rem;">${dateStr}</div>
-        `;
-        gallery.appendChild(cardThumb);
-    });
+                <img src="img/tarot/gold/${item.cardImg}.webp" 
+                    style="width: 100%; aspect-ratio: 9/16; object-fit: cover; border-radius: 8px; margin-bottom: 12px; filter: grayscale(0.2);">
+                <div style="color: var(--gold); font-weight: bold; font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    ${item.cardName}
+                </div>
+                <div style="color: #666; font-size: 0.65rem;">${dateStr}</div>
+            `;
+            gallery.appendChild(cardThumb);
+        });
 
     renderDestinyChart(history);
 }
@@ -503,7 +503,15 @@ function showEnergySummary(lastData) {
     `;
 }
 
-// 기존에 있던 drawChart 함수 내부에 이 함수를 실행하도록 연결해야 합니다.
-// script.js 내의 'function drawChart(history) {' 부분을 찾아서 
-// 맨 마지막 줄(window.myChart = new Chart(...) 코드의 바로 다음 줄)에 아래 한 줄을 넣어주세요.
-// showEnergySummary(lastData);
+
+// 카드 뒷면과 기본 이미지들을 미리 로딩하는 함수 (내일 script.js에 추가 예정)
+function preloadImages() {
+    const imagesToPreload = [
+        'img/tarot/back/back1.webp',
+        'img/tarot/back/back2.webp'
+    ];
+    imagesToPreload.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+}
