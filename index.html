@@ -38,11 +38,9 @@
 </head>
 
 <body>
+
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP46CVMP"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <div class="stars"></div>
-  
-    <canvas class="stars" id="starCanvas"></canvas>
 
     <header>
         <h1>✨ KIVOSY Yes/No Tarot</h1>
@@ -138,8 +136,6 @@
         <h2>How Does KIVOSY Yes or No Tarot Work?</h2>
         <p style="color: var(--gold); font-style: italic; margin-bottom: 20px;">
             "Our AI-powered algorithm provides the most accurate Yes or No Tarot answers, combining traditional wisdom with modern technology."
-        </p>
-        <h2>How Does KIVOSY Yes or No Tarot Work?</h2>
         <p>The <strong>Yes No Tarot</strong> is a powerful, instantaneous tool for those seeking immediate guidance from the universe. Unlike complex multi-card spreads that can be overwhelming, this one-card oracle focuses on the core energy of your specific inquiry. Whether you are facing a crossroads in <strong>love, career, or daily life decisions</strong>, our digital oracle provides clear 'Yes', 'No', or 'Maybe' answers based on the 78 traditional Rider-Waite interpretations.</p>
 
         <h3>The Ancient Art of Tarot Divination</h3>
@@ -177,32 +173,34 @@
             <li><strong>Privacy First:</strong> Your questions are your own; we never store your personal inquiries.</li>
         </ul>
 
-        <h3>Frequently Asked Questions (FAQ)</h3>
-        <p><strong>Q: Can I ask the same question twice?</strong><br>
-        A: We recommend asking once and reflecting. If you ask until you get the answer you want, you lose the intuitive benefit of the reading.</p>
+        <h3 style="text-align: center; margin-top: 60px; letter-spacing: 1px;">Frequently Asked Questions (FAQ)</h3>
         
-        <p><strong>Q: Does a 'Maybe' mean the cards don't know?</strong><br>
-        A: A 'Maybe' (like The Moon) usually suggests that the situation is still in flux or there is hidden information you haven't seen yet.</p>
-        
-        <p><strong>Q: Is this a replacement for professional advice?</strong><br>
-        A: No. Tarot is for entertainment and spiritual guidance only. For medical, legal, or financial decisions, always consult a qualified professional.</p>
+        <div class="faq-container" style="max-width: 100%; margin: 30px auto; text-align: left;">
+            <div class="faq-item" style="margin-bottom: 25px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); padding-bottom: 20px;">
+                <p><strong>Q: Can I ask the same question twice?</strong><br>
+                <span style="color: #aaa; font-size: 0.95rem; display: block; margin-top: 8px;">
+                    A: We recommend asking once and reflecting. If you ask until you get the answer you want, you lose the intuitive benefit of the reading.
+                </span></p>
+            </div>
+            
+            <div class="faq-item" style="margin-bottom: 25px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); padding-bottom: 20px;">
+                <p><strong>Q: Does a 'Maybe' mean the cards don't know?</strong><br>
+                <span style="color: #aaa; font-size: 0.95rem; display: block; margin-top: 8px;">
+                    A: A 'Maybe' (like The Moon) usually suggests that the situation is still in flux or there is hidden information you haven't seen yet.
+                </span></p>
+            </div>
+            
+            <div class="faq-item" style="margin-bottom: 10px;">
+                <p><strong>Q: Is this a replacement for professional advice?</strong><br>
+                <span style="color: #aaa; font-size: 0.95rem; display: block; margin-top: 8px;">
+                    A: No. Tarot is for entertainment and spiritual guidance only. For medical, legal, or financial decisions, always consult a qualified professional.
+                </span></p>
+            </div>
+        </div>
     </article>
 
     <script>
-        // 별자리 배경 애니메이션 (이 부분은 그대로 두세요)
-        const canvas = document.getElementById('starCanvas');
-        const ctx = canvas.getContext('2d');
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.onresize = resize; resize();
-        const stars = [];
-        for(let i=0; i<150; i++) stars.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: Math.random()*2 });
-        function drawStars() {
-            ctx.clearRect(0,0,canvas.width, canvas.height);
-            ctx.fillStyle = "white";
-            stars.forEach(s => { ctx.beginPath(); ctx.arc(s.x, s.y, s.size, 0, Math.PI*2); ctx.fill(); });
-        }
-        drawStars();
-
+        
         // 뒷면 이미지 랜덤 설정 함수
         function setRandomBack() {
             // 이제 실제 경로인 img/tarot/back/ 으로 연결합니다!
@@ -226,7 +224,6 @@
         window.onload = function() {
             // 1. 기존 기능들 (뒷면 랜덤, 별그리기)
             setRandomBack();
-            drawStars();
 
             // 2. 새로고침 시 맨 위로 스크롤 고정
             if ('scrollRestoration' in history) {
@@ -259,7 +256,6 @@
     <audio id="sound-flip" src="https://assets.mixkit.co/active_storage/sfx/2014/2014-preview.mp3" preload="auto"></audio>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>    
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
 
     <script src="tarotData.js"></script>

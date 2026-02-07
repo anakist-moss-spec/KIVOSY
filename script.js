@@ -70,8 +70,14 @@ async function drawCard() {
 
         await new Promise(resolve => setTimeout(resolve, 1000));
 
+        // 1. 스타일 결정 (금색 vs 오리지널)
+        const selectedStyle = Math.random() < 0.5 ? 'gold' : 'original';
+
+        // 2. 카드 랜덤 선택 (이 줄이 꼭 있어야 합니다!)
         const randomIndex = Math.floor(Math.random() * tarotData.length);
         const cardData = tarotData[randomIndex];
+
+        // 3. AI 및 해석 선택
         const aiNames = Object.keys(cardData.interpretations);
         const randomAI = aiNames[Math.floor(Math.random() * aiNames.length)];
         const selectedReply = cardData.interpretations[randomAI];
@@ -79,14 +85,15 @@ async function drawCard() {
         const question = questionInput.value.toLowerCase();
         let bodyHTML = "";
 
+
         // ✨ 핵심: "그래서 어쩌라는 거야?"를 해결해주는 우주의 한 줄 평
         const introMessage = `
             <div style="text-align: center; margin-bottom: 25px; padding: 20px; background: rgba(255,215,0,0.05); border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.3); border-top: 4px solid var(--gold);">
                 <span style="color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; display: block; margin-bottom: 10px;">The Universe's Direct Guidance</span>
                 <p style="font-size: 1.2rem; color: #fff; font-style: italic; line-height: 1.6; font-family: 'Georgia', serif; margin: 0;">
                     "${cardData.ans === 'YES' 
-                        ? `The energy of ${cardData.name} says: **Go for it.** The path is clear, so stop doubting and take that first step.` 
-                        : `The energy of ${cardData.name} says: **Wait.** This is not a 'No', but a 'Not yet'. Re-evaluate before you leap.`}"
+                        ? `The energy of ${cardData.name} says: <strong style="color: var(--gold); font-style: normal;">Go for it.</strong> The path is clear, so stop doubting and take that first step.` 
+                        : `The energy of ${cardData.name} says: <strong style="color: #ff4d4d; font-style: normal;">Wait.</strong> This is not a 'No', but a 'Not yet'. Re-evaluate before you leap.`}"
                 </p>
             </div>
         `;
@@ -111,11 +118,30 @@ async function drawCard() {
 
         const finalHTML = introMessage + bodyHTML;
 
+        // 1. 먼저 feedbackHTML을 정의합니다 (finalHTML 바로 위에 적어주세요)
+        const feedbackHTML = `
+            <div style="margin-top: 30px; border-top: 1px dashed rgba(212, 175, 55, 0.2); padding-top: 20px; text-align: center;">
+                <p style="font-size: 0.85rem; color: #888; margin-bottom: 15px;">Was this guidance clear to you?</p>
+                <div style="display: flex; justify-content: center; gap: 15px;">
+                    <button class="feedback-btn" style="padding: 8px 15px; background: transparent; border: 1px solid rgba(212,175,55,0.4); color: #aaa; border-radius: 20px; cursor: pointer; font-size: 0.8rem;">Yes, it helped</button>
+                    <button class="feedback-btn" style="padding: 8px 15px; background: transparent; border: 1px solid rgba(212,175,55,0.4); color: #aaa; border-radius: 20px; cursor: pointer; font-size: 0.8rem;">Still seeking</button>
+                </div>
+            </div>
+        `;
+
         // 데이터 삽입
-        document.getElementById('cardImage').src = `img/tarot/gold/${cardData.img}.webp`;
+        // 선택된 스타일(gold 또는 original) 폴더에서 이미지를 가져옵니다.
+        cardImage.src = `img/tarot/${selectedStyle}/${cardData.img}.webp`;
         document.getElementById('answerText').innerText = cardData.ans;
         document.getElementById('cardName').innerText = cardData.name;
-        document.getElementById('aiSource').innerText = `— Interpretation by ${randomAI} —`;
+        // 기존: document.getElementById('aiSource').innerText = `— Interpretation by ${randomAI} —`;
+        // 수정:
+        document.getElementById('aiSource').innerHTML = `
+            <span style="opacity: 0.6; font-size: 0.8rem; letter-spacing: 1px;">
+                Guided by the wisdom of <b style="color: var(--gold);">${randomAI}</b>
+            </span>
+        `;
+
 
         // 글자 자르기 (IntroMessage는 살리고 본문만 자름)
         const summaryLimit = 350; 
@@ -159,8 +185,10 @@ async function drawCard() {
             question: questionInput.value || "General Reading",
             cardName: cardData.name,
             cardImg: cardData.img,
-            ans: cardData.ans, // ✨ 이 줄을 꼭 추가하세요! (YES/NO 데이터 보존)
-            category: matchedSection || "General" 
+            ans: cardData.ans,
+            // ✨ 바로 아래 줄 끝에 쉼표(,)가 있어야 다음 줄이 정상 작동합니다!
+            category: matchedSection || "General", 
+            style: selectedStyle 
         };
 
         let tarotHistory = JSON.parse(localStorage.getItem('tarotHistory') || '[]');
@@ -352,14 +380,15 @@ function updateHistoryUI() {
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         const dateStr = `${months[dateObj.getMonth()]} ${dateObj.getDate().toString().padStart(2, '0')}`;
 
+        // updateHistoryUI 함수 내부의 이미지 소스 부분을 이렇게 수정하세요
         cardThumb.innerHTML = `
-                <img src="img/tarot/gold/${item.cardImg}.webp" 
-                    style="width: 100%; aspect-ratio: 9/16; object-fit: cover; border-radius: 8px; margin-bottom: 12px; filter: grayscale(0.2);">
-                <div style="color: var(--gold); font-weight: bold; font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                    ${item.cardName}
-                </div>
-                <div style="color: #666; font-size: 0.65rem;">${dateStr}</div>
-            `;
+            <img src="img/tarot/${item.style || 'gold'}/${item.cardImg}.webp" 
+                style="width: 100%; aspect-ratio: 9/16; object-fit: cover; border-radius: 8px; margin-bottom: 12px; filter: grayscale(0.2);">
+            <div style="color: var(--gold); font-weight: bold; font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                ${item.cardName}
+            </div>
+            <div style="color: #666; font-size: 0.65rem;">${dateStr}</div>
+        `;
             gallery.appendChild(cardThumb);
         });
 
@@ -382,22 +411,30 @@ function renderDestinyChart(history) {
 
 // 3. 등락이 확실히 보이는 '에너지 지수' 그래프 (수정본)
 function drawChart(history) {
-    const ctx = document.getElementById('destinyChart').getContext('2d');
+    const canvas = document.getElementById('destinyChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    // ✨ [수정 핵심] 기존에 그려진 차트가 있다면 파괴(Destroy)합니다.
+    // 이 코드가 있어야 카드를 뽑을 때마다 그래프와 하단 갤러리가 새로고침됩니다.
+    if (window.myChart instanceof Chart) {
+        window.myChart.destroy();
+    }
+
     const lastData = history.slice(-10);
     const labels = lastData.map((_, i) => `Reading ${i + 1}`);
 
-    // ✨ 무분별한 랜덤 대신, 카드의 결과(YES/NO)에 따른 실제 점수 부여
+    // 카드의 결과(YES/NO)에 따른 실제 점수 부여 로직
     const getScore = (item, type) => {
-        // 해당 읽기가 요청된 카테고리와 일치할 때만 점수 계산
         if (item.category === type) {
-            if (item.ans === 'YES') return 85 + (Math.random() * 15);    // 85~100점 (긍정)
-            if (item.ans === 'MAYBE') return 40 + (Math.random() * 20);  // 40~60점 (보통)
-            return 20 + (Math.random() * 20);                            // 20~40점 (주의)
+            if (item.ans === 'YES') return 85 + (Math.random() * 15);    // 85~100점
+            if (item.ans === 'MAYBE') return 40 + (Math.random() * 20);  // 40~60점
+            return 20 + (Math.random() * 20);                            // 20~40점
         }
-        // 관련 없는 카테고리는 낮은 기본 에너지로 표시
-        return 10 + (Math.random() * 10); 
+        return 10 + (Math.random() * 10); // 관련 없는 카테고리는 낮은 에너지
     };
 
+    // ✨ window.myChart에 새 차트를 할당합니다.
     window.myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -442,10 +479,10 @@ function drawChart(history) {
                         color: '#d4af37', 
                         usePointStyle: true, 
                         padding: 20,
-                        font: { family: 'Georgia', size: 12 } // 영문 폰트 스타일 지정
+                        font: { family: 'Georgia', size: 12 }
                     } 
                 },
-                tooltip: { // 마우스를 올렸을 때 나오는 팝업도 영문으로
+                tooltip: {
                     callbacks: {
                         title: (items) => `Cosmic ${items[0].label}`
                     }
@@ -465,8 +502,10 @@ function drawChart(history) {
         }
     });
 
+    // 그래프 아래 요약 메시지 업데이트
     showEnergySummary(lastData);
 }
+
 
 // 에너지 요약 메시지를 생성하고 화면에 표시하는 함수
 function showEnergySummary(lastData) {

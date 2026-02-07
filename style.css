@@ -593,3 +593,58 @@ button:hover {
     transform: scale(1.02);
     background: rgba(255, 215, 0, 0.2);
 }
+
+/* --------------------------------------------------
+   5. 모바일 기기 최적화
+   -------------------------------------------------- */
+/* --- 모바일 기기 최적화 (화면 폭 600px 이하) --- */
+@media (max-width: 600px) {
+    /* 1. 전체 여백 조정 */
+    body {
+        padding: 10px;
+        width: 100vw;
+        box-sizing: border-box;
+    }
+
+    /* 2. 카드 크기 최적화 (모바일 화면에 꽉 차게) */
+    .card-wrapper {
+        width: 85vw; /* 화면 너비의 85% 사용 */
+        max-width: 280px; /* 너무 커지지 않게 제한 */
+        margin: 20px auto;
+    }
+
+    /* 3. 텍스트 줄 맞춤 (양쪽 정렬 및 가독성) */
+    .full-text, .interpretation {
+        font-size: 0.95rem; /* 모바일에서 보기 편한 글자 크기 */
+        line-height: 1.7;
+        text-align: justify; /* 양쪽 정렬로 줄 끝을 깔끔하게 */
+        word-break: keep-all; /* 단어가 잘리지 않게 한글/영어 정렬 */
+        padding: 15px;
+    }
+
+    /* 4. 결과창 박스 조정 */
+    #resultArea {
+        width: 95%;
+        padding: 15px;
+        margin: 0 auto;
+    }
+
+    /* 5. 버튼 크기 조정 (고정 크기 유지 혹은 유연하게) */
+    #save-btn, .reset-btn {
+        width: 140px !important; /* 모바일에서는 살짝 줄여서 두 개가 한 줄에 나오게 하거나 */
+        height: 45px !important;
+        padding: 10px !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* 해시태그 형태의 키워드 버튼만 100%로 만들고 싶다면 따로 분리 */
+    .key-btn {
+        width: calc(50% - 10px); /* 모바일에서 두 개씩 나란히 */
+        margin: 5px;
+    }
+
+    /* 6. 헤더 텍스트 크기 축소 */
+    header h1 {
+        font-size: 1.8rem;
+    }
+}
