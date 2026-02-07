@@ -70,7 +70,7 @@ async function drawCard() {
 
         await new Promise(resolve => setTimeout(resolve, 1000));
 
-        const randomIndex = Math.floor(Math.random() * 22);
+        const randomIndex = Math.floor(Math.random() * tarotData.length);
         const cardData = tarotData[randomIndex];
         const aiNames = Object.keys(cardData.interpretations);
         const randomAI = aiNames[Math.floor(Math.random() * aiNames.length)];
@@ -131,45 +131,38 @@ async function drawCard() {
             readMoreBtn.style.display = 'none';
         }
 
-        showFollowUps(matchedSection || "General");
-
+        // 1. 로더와 쉐이킹 먼저 멈추기
         loader.style.display = 'none';
         inner.classList.remove('shaking');
 
+        // 2. 카드 뒤집기 시작 & 소리 재생
+        inner.classList.add('flipped'); 
         const flipSound = document.getElementById('sound-flip');
         if (flipSound) flipSound.play();
 
-        inner.classList.add('flipped');
-        
-        // script.js 내의 해당 부분을 이렇게 변경하세요
-        setTimeout(() => {
-            // 결과 영역 표시
-            resultArea.style.display = 'block';
+        // 3. ✨ 추천 질문은 여기서 딱 한 번만 호출 (카드가 뒤집히는 동안 생성됨)
+        showFollowUps(matchedSection || "General");
 
-            // 스크롤 위치 조절 (기기에 상관없이 결과창 위쪽이 넉넉히 보이게 -500 유지 혹은 -300으로 조절)
+        // 4. 애니메이션이 끝날 즈음 결과창 노출
+        setTimeout(() => {
+            resultArea.style.display = 'block';
             window.scrollTo({ 
-                top: resultArea.offsetTop - 470, //카드 뒤집고 하단으로 내려가는 위치
+                top: resultArea.offsetTop - 470, 
                 behavior: 'smooth' 
             });
-            
-            // 축하 꽃가루 효과
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#d4af37', '#f9f295', '#ffffff'] 
-            });
+        }, 600);
 
-        }, 600); // 300에서 600으로 변경 완료!
 
-        // 히스토리 저장
+        // 히스토리 저장 데이터에 ans 추가
         const historyEntry = {
             date: new Date().toISOString(), 
             question: questionInput.value || "General Reading",
             cardName: cardData.name,
             cardImg: cardData.img,
+            ans: cardData.ans, // ✨ 이 줄을 꼭 추가하세요! (YES/NO 데이터 보존)
             category: matchedSection || "General" 
         };
+
         let tarotHistory = JSON.parse(localStorage.getItem('tarotHistory') || '[]');
         tarotHistory.push(historyEntry);
         if (tarotHistory.length > 50) tarotHistory.shift();
@@ -242,7 +235,7 @@ function saveCardImage() {
     const answer = document.getElementById('answerText').innerText;
     
     const descDiv = document.getElementById('descText');
-    const pTag = descDiv.querySelector('p');
+    const pTag = descDiv.querySelector('div p'); 
     const universeMsg = pTag ? pTag.innerText : "";
 
     const canvas = document.createElement('canvas');
@@ -387,23 +380,23 @@ function renderDestinyChart(history) {
 }
 
 
-// 3. 등락이 확실히 보이는 '에너지 지수' 그래프
+// 3. 등락이 확실히 보이는 '에너지 지수' 그래프 (수정본)
 function drawChart(history) {
     const ctx = document.getElementById('destinyChart').getContext('2d');
-    
-    // 최근 10개의 데이터 추출
     const lastData = history.slice(-10);
     const labels = lastData.map((_, i) => `Reading ${i + 1}`);
-    
-    // 누적이 아니라 각 회차별 "에너지 점수"로 변경 (등락을 보여주기 위함)
-    // General 질문도 포함되도록 로직 수정
-    const getScore = (item, type) => {
-        if (item.category === type) return Math.floor(Math.random() * 40) + 60; // 매칭되면 60~100점
-        if (item.category === 'General') return Math.floor(Math.random() * 30) + 30; // 일반은 30~60점
-        return Math.floor(Math.random() * 20); // 나머지는 0~20점
-    };
 
-    if (window.myChart) window.myChart.destroy();
+    // ✨ 무분별한 랜덤 대신, 카드의 결과(YES/NO)에 따른 실제 점수 부여
+    const getScore = (item, type) => {
+        // 해당 읽기가 요청된 카테고리와 일치할 때만 점수 계산
+        if (item.category === type) {
+            if (item.ans === 'YES') return 85 + (Math.random() * 15);    // 85~100점 (긍정)
+            if (item.ans === 'MAYBE') return 40 + (Math.random() * 20);  // 40~60점 (보통)
+            return 20 + (Math.random() * 20);                            // 20~40점 (주의)
+        }
+        // 관련 없는 카테고리는 낮은 기본 에너지로 표시
+        return 10 + (Math.random() * 10); 
+    };
 
     window.myChart = new Chart(ctx, {
         type: 'line',
@@ -515,3 +508,6 @@ function preloadImages() {
         img.src = src;
     });
 }
+
+// script.js 맨 아래에 이 한 줄을 추가해야 실제로 작동합니다!
+preloadImages();
