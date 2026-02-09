@@ -215,17 +215,21 @@ button:hover {
     box-shadow: 0 0 15px var(--gold); 
 }
 
-/* --- SEO 컨텐츠 영역 --- */
+
+/*--------------------------------
+/*- SEO 컨텐츠 영역 (여백 다이어트 버전)
+/*--------------------------------
+/* --- SEO 컨텐츠 영역 (여백 다이어트 버전) --- */
 .seo-content { 
     max-width: 800px; 
-    margin: 80px auto; 
-    padding: 40px; 
+    margin: 80px auto 0 auto; /* 아래쪽 마진(bottom)을 0으로 박멸! */
+    padding: 40px 40px 20px 40px; /* 아래쪽 패딩도 살짝 줄임 */
     text-align: left; 
     border-top: 1px solid #333; 
     line-height: 1.8; 
     color: #bbb;
     background: rgba(10, 10, 12, 0.9); 
-    border-radius: 20px;
+    border-radius: 20px 20px 0 0; /* 아래쪽 둥근 모서리를 없애서 푸터와 밀착 */
 }
 
 .seo-content h2, .seo-content h3 { 
@@ -242,6 +246,8 @@ button:hover {
 .seo-content li { 
     margin-bottom: 12px; 
 }
+
+
 
 /* --- AI 해석 섹션 가독성 강화 (기존 스타일 유지하며 추가) --- */
 
@@ -512,43 +518,69 @@ button:hover {
     box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5) !important;
 }
 
-/* --- 푸터 디자인 (CSS로 모두 이사) --- */
+
+/*--------------------------------
+/*- 푸터 디자인부분
+/*--------------------------------
+
+/* --- KIVOSY 통합 푸터 디자인 (최종본) --- */
+/* --- KIVOSY 통합 푸터 디자인 (최종 합체) --- */
 .kivosy-footer {
-    width: 100%;            /* 선이 양옆으로 끝까지! */
-    margin-top: 80px; 
-    padding: 60px 0; 
+    width: 100%;
+    margin-top: 0;           /* ◀ 100px에서 0으로 수정! SEO 박스와 바로 연결됩니다 */
+    padding: 40px 0 60px 0;  /* 위쪽 패딩 살짝 조정 */
     text-align: center; 
-    border-top: 1px solid var(--gold); /* 시원하게 뻗는 황금선 */
+    border-top: 1px solid var(--gold); 
     color: #888; 
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     background: rgba(0, 0, 0, 0.3);
 }
 
-.privacy-link-wrapper {
-    margin-top: 15px;
-}
-
+/* 푸터 내 링크 및 버튼 스타일 */
 .kivosy-footer a {
     color: var(--gold);
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-/* 프라이버시 정책 박스 */
+.privacy-link-wrapper {
+    margin-top: 25px;
+}
+
+.privacy-link-wrapper a {
+    display: inline-block;
+    color: #888;
+    padding: 8px 25px;
+    border: 1px solid rgba(136, 136, 136, 0.3);
+    border-radius: 30px;
+    font-size: 0.8rem;
+}
+
+.privacy-link-wrapper a:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+    background: rgba(255, 215, 0, 0.05);
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* 프라이버시 정책 내용 박스 */
 .privacy-box {
-    display: none; 
-    text-align: left; 
-    max-width: 800px; 
+    display: none;
+    max-width: 700px; 
     margin: 30px auto; 
     padding: 30px; 
-    background: rgba(255, 255, 255, 0.05); 
+    background: #111;
+    border: 1px solid rgba(212, 175, 55, 0.3); 
     border-radius: 15px; 
+    text-align: left; 
     line-height: 1.8;
+    color: #ccc;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.privacy-box h3 {
-    color: var(--gold);
-    margin-top: 0;
-}
+
+
 
 /* --- 추가 질문 버튼 호버 스타일 (style.css 맨 아래에 추가) --- */
 .key-btn:hover {
@@ -647,4 +679,44 @@ button:hover {
     header h1 {
         font-size: 1.8rem;
     }
+}
+
+/* Privacy Policy 박스 스타일 */
+.privacy-box {
+    display: none; /* 처음에 숨김 */
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(255, 215, 0, 0.05); /* 아주 연한 황금빛 배경 */
+    border: 1px solid rgba(212, 175, 55, 0.3); /* 은은한 금색 테두리 */
+    border-radius: 10px;
+    text-align: left; /* 약관은 왼쪽 정렬이 국룰 */
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #ccc;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.privacy-box h3 {
+    color: var(--gold);
+    margin-top: 0;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    padding-bottom: 10px;
+}
+
+.privacy-box b {
+    color: var(--gold); /* 강조 문구도 금색으로 */
+}
+
+.privacy-link-wrapper a {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.3s;
+}
+
+.privacy-link-wrapper a:hover {
+    color: var(--gold); /* 마우스 올리면 금색으로 변신 */
 }
