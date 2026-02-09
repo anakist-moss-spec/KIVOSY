@@ -144,13 +144,19 @@ async function drawCard() {
 
 
         // 글자 자르기 (IntroMessage는 살리고 본문만 자름)
+        // --- [수정] 글자 자르기 및 상세 페이지 이동 로직 ---
         const summaryLimit = 350; 
         if (bodyHTML.length > summaryLimit) {
             descText.innerHTML = introMessage + bodyHTML.substring(0, summaryLimit) + "...";
             readMoreBtn.style.display = 'block';
+            
+            // ✨ 이 버튼을 눌렀을 때 개별 상세 페이지로 이동하게 만듭니다!
             readMoreBtn.onclick = () => {
-                descText.innerHTML = finalHTML;
-                readMoreBtn.style.display = 'none';
+                // 파일명 규칙: 소문자 변환, 공백을 하이픈(-)으로 변경
+                const cardFileName = cardData.name.toLowerCase().replace(/ /g, "-") + ".html";
+                
+                // 생성된 카드가 있는 경로로 이동 (index.html 기준)
+                window.location.href = `cards/en/${cardFileName}`;
             };
         } else {
             descText.innerHTML = finalHTML;
