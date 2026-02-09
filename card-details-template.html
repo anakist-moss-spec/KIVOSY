@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meaning of [Card Name] | KIVOSY Yes No Tarot Guide</title>
+    <meta name="description" content="Detailed interpretation of the [Card Name] tarot card for Yes/No questions. Understand the cosmic energy of [Card Name] in Love, Career, and Wealth.">
+    <link rel="stylesheet" href="../../style.css"> 
+    <style>
+        .card-detail-container { max-width: 800px; margin: 50px auto; padding: 20px; color: #eee; line-height: 1.8; position: relative; }
+        .detail-img { width: 250px; display: block; margin: 0 auto 30px; border: 2px solid var(--gold); border-radius: 15px; }
+        .meaning-section { margin-top: 40px; background: rgba(255,215,0,0.05); padding: 30px; border-radius: 20px; }
+        h1, h2 { color: var(--gold); text-align: center; }
+        .yes-no-badge { display: inline-block; padding: 5px 15px; border-radius: 20px; font-weight: bold; margin-bottom: 20px; }
+        .badge-yes { background: #2ecc71; color: white; }
+        .badge-no { background: #e74c3c; color: white; }
+
+        /* ✨ TOP 버튼 호버 효과 */
+        #scrollTopBtn:hover {
+            transform: scale(1.1); 
+            filter: brightness(1.2);
+            box-shadow: 0 0 25px var(--gold); /* 호버 시 광채 더 강하게 */
+        }
+    </style>
+</head>
+<body>
+    <div class="card-detail-container">
+        <div style="margin-bottom: 25px; display: flex; align-items: center; gap: 5px;">
+            <a href="../../index.html" style="color: var(--gold); text-decoration: none;">← Back to Oracle</a>
+            <span style="border-left: 3px solid var(--gold); height: 15px; margin: 0 15px; display: inline-block; vertical-align: middle; opacity: 0.7;"></span>
+            <a href="../../all-cards.html" style="color: var(--gold); text-decoration: none; font-weight: bold;">☰ Back to List</a>
+        </div>
+
+        <h1>[Card Name]</h1>
+        
+        [card-images-here]
+
+        <div class="meaning-section">
+            <div class="yes-no-badge [Badge-Class]">YES / NO : [YES/NO Result]</div>
+            
+            <h2>Core Meaning</h2>
+            <div class="content-box">[Core Meaning Content]</div>
+
+            <h2>Love & Relationships</h2>
+            <div class="content-box">[Love Content]</div>
+
+            <h2>Career & Wealth</h2>
+            <div class="content-box">[Career Content]</div>
+        </div>
+
+        <div style="margin-top: 50px; text-align: center;">
+            <button class="action-btn" onclick="location.href='../../index.html'">Get Your Own Reading Now ✨</button>
+        </div>
+    </div>
+
+    <div style="position: fixed; bottom: 50px; left: 50%; transform: translateX(410px); z-index: 99;">
+        <button id="scrollTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+            style="display: none; background-color: var(--gold); color: black; border: 2px solid #000; 
+            cursor: pointer; width: 60px; height: 60px; border-radius: 50%; font-weight: bold;
+            box-shadow: 0 0 15px var(--gold); transition: 0.3s; font-size: 14px;
+            display: none; align-items: center; justify-content: center; padding: 0;">
+            TOP
+        </button>
+    </div>
+
+    <script>
+        // 스크롤 시 버튼 표시 제어
+        window.onscroll = function() {
+            const btn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 150 || document.documentElement.scrollTop > 150) {
+                btn.style.display = "flex"; // flex로 켜야 정중앙 정렬 유지됨
+            } else {
+                btn.style.display = "none";
+            }
+        };
+    </script>
+</body>
+</html>
