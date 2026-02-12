@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Tarot Card Guide - All 78 Cards | KIVOSY Tarot</title>
+    <meta name="description" content="Explore all 78 tarot cards with detailed meanings for Yes/No questions. Major and Minor Arcana interpretations for Love, Career, and Wealth.">
+    <meta name="keywords" content="tarot cards, major arcana, minor arcana, tarot guide, card meanings, yes no tarot">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body {
+            background: #000;
+            color: #eee;
+            font-family: 'Georgia', serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1 {
+            text-align: center;
+            color: var(--gold, #FFD700);
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        .subtitle {
+            text-align: center;
+            color: #999;
+            font-size: 1.2em;
+            margin-bottom: 50px;
+        }
+        .section-title {
+            color: var(--gold, #FFD700);
+            font-size: 2em;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid var(--gold, #FFD700);
+            padding-bottom: 15px;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        .card-item {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .card-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+        .card-name {
+            color: var(--gold, #FFD700);
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .card-answer {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .ans-yes {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+        }
+        .ans-no {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+        .back-btn {
+            display: block;
+            width: fit-content;
+            margin: 40px auto;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--gold, #FFD700), #daa520);
+            color: #000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <nav style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <a href="../index.html" style="text-decoration: none; color: var(--gold, #FFD700); font-size: 1.1em; display: inline-flex; align-items: center; gap: 8px;">
+                <span style="font-size: 1.4em;">←</span> <span class="nav-text">Back</span>
+            </a>
+
+            <div class="language-selector">
+                <select onchange="location.href=this.value" style="background: #111; color: var(--gold); border: 1px solid rgba(255,215,0,0.4); padding: 7px 15px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; outline: none; appearance: none; text-align: center;">
+                    <option value="all-cards.html">🌐 English</option>
+                    <option value="all-cards-ko.html">한국어</option>
+                    <option value="all-cards-ja.html">日本語</option>
+                    <option value="all-cards-zh-CN.html">简体中文</option>
+                    <option value="all-cards-zh-TW.html">繁體中文</option>
+                    <option value="all-cards-es.html">Español</option>
+                    <option value="all-cards-pt.html">Português</option>
+                    <option value="all-cards-fr.html">Français</option>
+                    <option value="all-cards-de.html">Deutsch</option>
+                    <option value="all-cards-it.html">Italiano</option>
+                    <option value="all-cards-ru.html">Русский</option>
+                    <option value="all-cards-id.html">Bahasa Indonesia</option>
+                    <option value="all-cards-tr.html">Türkçe</option>
+                    <option value="all-cards-vi.html">Tiếng Việt</option>
+                    <option value="all-cards-ar.html">العربية</option>
+                    <option value="all-cards-th.html">ไทย</option>
+                    <option value="all-cards-hi.html">हिन्दी</option>
+                    <option value="all-cards-pl.html">Polski</option>
+                </select>
+            </div>
+        </nav>
+
+        <h1>✨ Complete Tarot Card Guide</h1>
+        <p class="subtitle">Explore all 78 cards with detailed Yes/No interpretations</p>
+        
+        <h2 class="section-title">🌟 Major Arcana (22 Cards)</h2>
+        <div class="card-grid">
+            <a href="cards/ja/the-fool.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">愚か者<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Fool)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/the-magician.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">マジシャン<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Magician)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/the-high-priestess.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">女教皇<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The High Priestess)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/ja/the-empress.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">皇后<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Empress)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/the-emperor.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">皇帝<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Emperor)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/the-hierophant.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ハイエロファント<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Hierophant)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/ja/the-lovers.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">恋人たち<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Lovers)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/the-chariot.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">戦車<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Chariot)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/strength.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">強さ<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Strength)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/the-hermit.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">隠者<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Hermit)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/ja/wheel-of-fortune.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">運命の輪<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Wheel of Fortune)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/justice.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">正義<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Justice)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/ja/the-hanged-man.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">吊られた男<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Hanged Man)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/ja/death.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">死<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Death)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/ja/temperance.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">禁酒<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Temperance)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/the-devil.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">悪魔<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Devil)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/ja/the-tower.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ザ・タワー<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Tower)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/ja/the-star.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ザ・スター<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Star)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/the-moon.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">月<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Moon)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/ja/the-sun.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">太陽<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Sun)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/judgement.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">判定<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Judgement)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/the-world.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">世界<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The World)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+        </div>
+
+        <h2 class="section-title">🔥 Wands (14 Cards)</h2>
+        <div class="card-grid">
+            <a href="cards/ja/ace-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ワンドのエース<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ace of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/two-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ワンドの2<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Two of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/three-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ワンドの 3<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Three of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/four-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ワンドの4<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Four of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/five-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ワンドの5<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Five of Wands)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/ja/six-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ワンドの6<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Six of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/seven-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ワンドの七<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Seven of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/eight-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ワンドの8<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Eight of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/nine-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ワンドの9<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Nine of Wands)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/ja/ten-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ワンドの十<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ten of Wands)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/ja/page-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ワンドのページ<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Page of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/knight-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ワンドの騎士<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Knight of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/queen-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ワンドの女王<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Queen of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/king-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ワンドの王<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(King of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+        </div>
+
+        <h2 class="section-title">💧 Cups (14 Cards)</h2>
+        <div class="card-grid">
+            <a href="cards/ja/ace-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">カップのエース<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ace of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/two-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">カップの 2<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Two of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/three-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">カップの 3<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Three of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/four-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">カップの 4<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Four of Cups)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/ja/five-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">カップの5<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Five of Cups)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/ja/six-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">カップの6<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Six of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/seven-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">カップの7<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Seven of Cups)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/ja/eight-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">カップの８<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Eight of Cups)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/ja/nine-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">カップの９<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Nine of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/ten-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">カップの10<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ten of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/page-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">カップのページ<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Page of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/knight-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">カップの騎士<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Knight of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/queen-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">カップの女王<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Queen of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/king-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">キングオブカップ<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(King of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+        </div>
+
+        <h2 class="section-title">⚔️ Swords (14 Cards)</h2>
+        <div class="card-grid">
+            <a href="cards/ja/ace-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">剣のエース<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ace of Swords)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/two-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">二つの剣<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Two of Swords)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/ja/three-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">スリー・オブ・ソード<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Three of Swords)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/ja/four-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">剣の四<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Four of Swords)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/ja/five-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ソードのファイブ<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Five of Swords)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/ja/six-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ソードのシックス<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Six of Swords)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/seven-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ソードのセブン<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Seven of Swords)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/ja/eight-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ソードのエイト<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Eight of Swords)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/ja/nine-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ソードのナイン<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Nine of Swords)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/ja/ten-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">剣の十<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ten of Swords)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/ja/page-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">剣のページ<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Page of Swords)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/ja/knight-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">剣の騎士<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Knight of Swords)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/queen-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">剣の女王<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Queen of Swords)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/king-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">剣の王<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(King of Swords)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+        </div>
+
+        <h2 class="section-title">💰 Pentacles (14 Cards)</h2>
+        <div class="card-grid">
+            <a href="cards/ja/ace-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ペンタクルのエース<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ace of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/two-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ペンタクルの 2<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Two of Pentacles)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/ja/three-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ペンタクルの 3<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Three of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/four-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ペンタクルの 4<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Four of Pentacles)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/ja/five-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ペンタクルの 5<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Five of Pentacles)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/ja/six-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ペンタクルの6<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Six of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/seven-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ペンタクルの 7<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Seven of Pentacles)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/ja/eight-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ペンタクルの 8<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Eight of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/nine-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ペンタクルの九<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Nine of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/ten-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ペンタクルの 10<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ten of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/page-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ペンタクルのページ<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Page of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/knight-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ペンタクルの騎士<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Knight of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/queen-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ペンタクルの女王<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Queen of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/ja/king-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">ペンタクルの王<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(King of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+        </div>
+
+        <a href="../index.html" class="back-btn">← Back to Oracle</a>
+    </div>
+</body>
+</html>

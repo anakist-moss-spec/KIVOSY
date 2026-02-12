@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Tarot Card Guide - All 78 Cards | KIVOSY Tarot</title>
+    <meta name="description" content="Explore all 78 tarot cards with detailed meanings for Yes/No questions. Major and Minor Arcana interpretations for Love, Career, and Wealth.">
+    <meta name="keywords" content="tarot cards, major arcana, minor arcana, tarot guide, card meanings, yes no tarot">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body {
+            background: #000;
+            color: #eee;
+            font-family: 'Georgia', serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1 {
+            text-align: center;
+            color: var(--gold, #FFD700);
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        .subtitle {
+            text-align: center;
+            color: #999;
+            font-size: 1.2em;
+            margin-bottom: 50px;
+        }
+        .section-title {
+            color: var(--gold, #FFD700);
+            font-size: 2em;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid var(--gold, #FFD700);
+            padding-bottom: 15px;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        .card-item {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .card-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+        .card-name {
+            color: var(--gold, #FFD700);
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .card-answer {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .ans-yes {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+        }
+        .ans-no {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+        .back-btn {
+            display: block;
+            width: fit-content;
+            margin: 40px auto;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--gold, #FFD700), #daa520);
+            color: #000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <nav style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <a href="../index.html" style="text-decoration: none; color: var(--gold, #FFD700); font-size: 1.1em; display: inline-flex; align-items: center; gap: 8px;">
+                <span style="font-size: 1.4em;">←</span> <span class="nav-text">Back</span>
+            </a>
+
+            <div class="language-selector">
+                <select onchange="location.href=this.value" style="background: #111; color: var(--gold); border: 1px solid rgba(255,215,0,0.4); padding: 7px 15px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; outline: none; appearance: none; text-align: center;">
+                    <option value="all-cards.html">🌐 English</option>
+                    <option value="all-cards-ko.html">한국어</option>
+                    <option value="all-cards-ja.html">日本語</option>
+                    <option value="all-cards-zh-CN.html">简体中文</option>
+                    <option value="all-cards-zh-TW.html">繁體中文</option>
+                    <option value="all-cards-es.html">Español</option>
+                    <option value="all-cards-pt.html">Português</option>
+                    <option value="all-cards-fr.html">Français</option>
+                    <option value="all-cards-de.html">Deutsch</option>
+                    <option value="all-cards-it.html">Italiano</option>
+                    <option value="all-cards-ru.html">Русский</option>
+                    <option value="all-cards-id.html">Bahasa Indonesia</option>
+                    <option value="all-cards-tr.html">Türkçe</option>
+                    <option value="all-cards-vi.html">Tiếng Việt</option>
+                    <option value="all-cards-ar.html">العربية</option>
+                    <option value="all-cards-th.html">ไทย</option>
+                    <option value="all-cards-hi.html">हिन्दी</option>
+                    <option value="all-cards-pl.html">Polski</option>
+                </select>
+            </div>
+        </nav>
+
+        <h1>✨ Complete Tarot Card Guide</h1>
+        <p class="subtitle">Explore all 78 cards with detailed Yes/No interpretations</p>
+        
+        <h2 class="section-title">🌟 Major Arcana (22 Cards)</h2>
+        <div class="card-grid">
+            <a href="cards/it/the-fool.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Il Matto<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Fool)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/the-magician.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Il Mago<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Magician)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/the-high-priestess.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">La Papessa<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The High Priestess)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/it/the-empress.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">L'Imperatrice<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Empress)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/the-emperor.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">L'Imperatore<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Emperor)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/the-hierophant.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Lo Ierofante<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Hierophant)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/it/the-lovers.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Gli Amanti<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Lovers)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/the-chariot.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Il Carro<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Chariot)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/strength.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Forza<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Strength)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/the-hermit.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">L'Eremita<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Hermit)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/it/wheel-of-fortune.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Ruota della fortuna<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Wheel of Fortune)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/justice.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Giustizia<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Justice)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/it/the-hanged-man.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">L'Impiccato<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Hanged Man)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/it/death.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Morte<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Death)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/it/temperance.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Temperanza<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Temperance)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/the-devil.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Il diavolo<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Devil)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/it/the-tower.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">La Torre<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Tower)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/it/the-star.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">La stella<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Star)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/the-moon.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">La Luna<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Moon)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/it/the-sun.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Il sole<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The Sun)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/judgement.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Sentenza<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Judgement)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/the-world.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Il mondo<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(The World)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+        </div>
+
+        <h2 class="section-title">🔥 Wands (14 Cards)</h2>
+        <div class="card-grid">
+            <a href="cards/it/ace-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Asso di bacchette<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ace of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/two-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Due di bacchette<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Two of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/three-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Tre di bacchette<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Three of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/four-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Quattro di bacchette<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Four of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/five-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Cinque di bacchette<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Five of Wands)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/it/six-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Sei di bacchette<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Six of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/seven-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Sette di bacchette<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Seven of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/eight-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Otto di bacchette<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Eight of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/nine-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Nove di bacchette<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Nine of Wands)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/it/ten-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Dieci di bacchette<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ten of Wands)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/it/page-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Pagina delle bacchette<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Page of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/knight-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Cavaliere di Bastoni<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Knight of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/queen-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Regina delle bacchette<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Queen of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/king-of-wands.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Re delle bacchette<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(King of Wands)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+        </div>
+
+        <h2 class="section-title">💧 Cups (14 Cards)</h2>
+        <div class="card-grid">
+            <a href="cards/it/ace-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Asso di Coppe<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ace of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/two-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Due di Coppe<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Two of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/three-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Tre di Coppe<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Three of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/four-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Quattro di Coppe<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Four of Cups)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/it/five-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Cinque di Coppe<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Five of Cups)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/it/six-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Sei di Coppe<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Six of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/seven-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Sette di Coppe<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Seven of Cups)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/it/eight-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Otto di Coppe<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Eight of Cups)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/it/nine-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Nove di Coppe<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Nine of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/ten-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Dieci di Coppe<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ten of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/page-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Pagina di Coppe<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Page of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/knight-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Cavaliere di Coppe<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Knight of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/queen-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Regina di Coppe<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Queen of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/king-of-cups.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Re di Coppe<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(King of Cups)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+        </div>
+
+        <h2 class="section-title">⚔️ Swords (14 Cards)</h2>
+        <div class="card-grid">
+            <a href="cards/it/ace-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Asso di spade<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ace of Swords)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/two-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Due di spade<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Two of Swords)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/it/three-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Tre di Spade<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Three of Swords)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/it/four-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Quattro di spade<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Four of Swords)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/it/five-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Cinque di Spade<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Five of Swords)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/it/six-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Sei di spade<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Six of Swords)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/seven-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Sette di spade<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Seven of Swords)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/it/eight-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Otto di Spade<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Eight of Swords)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/it/nine-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Nove di spade<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Nine of Swords)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/it/ten-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Dieci di spade<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ten of Swords)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/it/page-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Pagina di Spade<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Page of Swords)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/it/knight-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Cavaliere di Spade<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Knight of Swords)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/queen-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Regina di spade<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Queen of Swords)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/king-of-swords.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Re di spade<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(King of Swords)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+        </div>
+
+        <h2 class="section-title">💰 Pentacles (14 Cards)</h2>
+        <div class="card-grid">
+            <a href="cards/it/ace-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Asso di pentacoli<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ace of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/two-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Due di Denari<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Two of Pentacles)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/it/three-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Tre di Denari<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Three of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/four-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Quattro di Denari<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Four of Pentacles)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/it/five-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Cinque di Denari<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Five of Pentacles)</span></div>
+                <span class="card-answer ans-no">NO</span>
+            </a>
+            <a href="cards/it/six-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Sei di Denari<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Six of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/seven-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Sette di Denari<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Seven of Pentacles)</span></div>
+                <span class="card-answer ans-no">MAYBE</span>
+            </a>
+            <a href="cards/it/eight-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Otto di Denari<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Eight of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/nine-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Nove di Denari<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Nine of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/ten-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Dieci di Denari<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Ten of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/page-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Pagina di Denari<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Page of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/knight-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Cavaliere di Denari<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Knight of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/queen-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Regina di Denari<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(Queen of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+            <a href="cards/it/king-of-pentacles.html" class="card-item">
+                <div class="card-name" style="line-height:1.2; padding:5px 0;">Re di Denari<br><span style="font-size:0.75em; opacity:0.6; font-weight:normal;">(King of Pentacles)</span></div>
+                <span class="card-answer ans-yes">YES</span>
+            </a>
+        </div>
+
+        <a href="../index.html" class="back-btn">← Back to Oracle</a>
+    </div>
+</body>
+</html>

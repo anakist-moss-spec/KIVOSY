@@ -43,13 +43,38 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP46CVMP"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-    <header>
+    <header style="padding: 40px 20px 20px;">
         <h1>✨ KIVOSY Yes/No Tarot</h1>
         <p>Your instant answer from the universe</p>
-        <nav style="margin-top: 15px;">
-            <a href="all-cards.html" style="color: var(--gold); text-decoration: none; font-size: 0.9rem; border: 1px solid rgba(255,215,0,0.3); padding: 5px 15px; border-radius: 20px;">
-                ☰ View All Cards Meaning
+        
+        <nav style="margin-top: 25px; display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
+            
+            <a href="all-cards.html" style="color: var(--gold); text-decoration: none; font-size: 0.85rem; border: 1px solid rgba(255,215,0,0.4); padding: 7px 18px; border-radius: 20px; background: rgba(255,215,0,0.05); transition: 0.3s;">
+                ☰ View All Cards
             </a>
+
+            <div class="language-selector">
+                <select onchange="location.href=this.value" style="background: #111; color: var(--gold); border: 1px solid rgba(255,215,0,0.4); padding: 7px 15px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; text-align: center;">
+                    <option value="all-cards.html">🌐 English</option>
+                    <option value="all-cards-ko.html">한국어</option>
+                    <option value="all-cards-ja.html">日本語</option>
+                    <option value="all-cards-zh-CN.html">简体中文</option>
+                    <option value="all-cards-zh-TW.html">繁體中文</option>
+                    <option value="all-cards-es.html">Español</option>
+                    <option value="all-cards-pt.html">Português</option>
+                    <option value="all-cards-fr.html">Français</option>
+                    <option value="all-cards-de.html">Deutsch</option>
+                    <option value="all-cards-it.html">Italiano</option>
+                    <option value="all-cards-ru.html">Русский</option>
+                    <option value="all-cards-id.html">Bahasa Indonesia</option>
+                    <option value="all-cards-tr.html">Türkçe</option>
+                    <option value="all-cards-vi.html">Tiếng Việt</option>
+                    <option value="all-cards-ar.html">العربية</option>
+                    <option value="all-cards-th.html">ไทย</option>
+                    <option value="all-cards-hi.html">हिन्दी</option>
+                    <option value="all-cards-pl.html">Polski</option>
+                </select>
+            </div>
         </nav>
     </header>
 
@@ -216,12 +241,16 @@
             if (cardBack) cardBack.style.backgroundImage = `url('${randomBack}')`;
         }
 
-        // Privacy Policy 토글 함수
+        // Privacy Policy 토글 함수 (한 번에 열리도록 수정)
         function togglePrivacy() {
             const content = document.getElementById('privacyContent');
-            if (content.style.display === 'none') {
+            // 계산된 스타일을 체크하거나, 현재 상태가 block이 아니면 열어줍니다.
+            if (window.getComputedStyle(content).display === 'none') {
                 content.style.display = 'block';
-                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                // 부드럽게 아래로 스크롤
+                setTimeout(() => {
+                    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                }, 10);
             } else {
                 content.style.display = 'none';
             }
@@ -248,6 +277,33 @@
 
     
     <footer class="kivosy-footer">
+
+        <div style="margin-bottom: 40px; text-align: center;">
+            <h3 style="color: var(--gold); font-size: 0.9rem; margin-bottom: 20px; opacity: 0.7; letter-spacing: 1px;">
+                🌐 EXPLORE IN YOUR LANGUAGE
+            </h3>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 20px; max-width: 900px; margin: 0 auto; line-height: 1.6;">
+                <a href="all-cards.html" style="color: #999; text-decoration: none; font-size: 0.75rem; transition: 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='#999'">English</a>
+                <a href="all-cards-ko.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">한국어</a>
+                <a href="all-cards-ja.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">日本語</a>
+                <a href="all-cards-zh-CN.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">简体中文</a>
+                <a href="all-cards-zh-TW.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">繁體中文</a>
+                <a href="all-cards-es.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Español</a>
+                <a href="all-cards-pt.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Português</a>
+                <a href="all-cards-fr.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Français</a>
+                <a href="all-cards-de.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Deutsch</a>
+                <a href="all-cards-it.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Italiano</a>
+                <a href="all-cards-ru.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Русский</a>
+                <a href="all-cards-id.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Bahasa Indonesia</a>
+                <a href="all-cards-tr.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Türkçe</a>
+                <a href="all-cards-vi.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Tiếng Việt</a>
+                <a href="all-cards-ar.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">العربية</a>
+                <a href="all-cards-th.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">ไทย</a>
+                <a href="all-cards-hi.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">हिन्दी</a>
+                <a href="all-cards-pl.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Polski</a>
+            </div>
+        </div>
+
         <div style="margin-bottom: 20px;">
             <a href="all-cards.html" style="color: var(--gold); text-decoration: none; font-weight: bold;">
                 All Tarot Cards Library
@@ -259,7 +315,17 @@
         </p>
         <div id="privacyContent" class="privacy-box">
             <h3>Privacy Policy</h3>
-            <p>Your privacy is important to us...</p>
+            <p>At KIVOSY, accessible from kivosy.com, one of our main priorities is the privacy of our visitors.</p>
+            
+            <p><b>1. Log Files:</b> KIVOSY follows a standard procedure of using log files. These files log visitors when they visit websites. The information collected includes IP addresses, browser type, Internet Service Provider (ISP), date and time stamp, and referring/exit pages.</p>
+            
+            <p><b>2. Cookies and Web Beacons:</b> Like any other website, KIVOSY uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited.</p>
+            
+            <p><b>3. Google DoubleClick DART Cookie:</b> Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to kivosy.com and other sites on the internet. Visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy.</p>
+            
+            <p><b>4. Our Advertising Partners:</b> Some of advertisers on our site may use cookies and web beacons. Our advertising partners include Google AdSense. Each of our advertising partners has their own Privacy Policy for their policies on user data.</p>
+            
+            <p><b>5. Consent:</b> By using our website, you hereby consent to our Privacy Policy and agree to its Terms and Conditions.</p>
         </div>
     </footer>
 
