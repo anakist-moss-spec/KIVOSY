@@ -1,237 +1,210 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIVOSY — 세상의 모든 목소리가 데이터가 되는 곳</title>
-    
-    <meta name="description" content="커뮤니티의 화력을 데이터로 증명하세요. 유입 경로별 투표 성향 분석 및 실시간 대시보드를 제공하는 여론 분석 플랫폼 KIVOSY입니다.">
-    <meta name="keywords" content="투표, 설문조사, 여론분석, 커뮤니티 투표, 실시간 투표, 데이터 시각화">
-    <meta property="og:title" content="KIVOSY — Beyond the Vote">
-    <meta property="og:description" content="단순한 투표를 넘어 데이터로 증명하는 여론의 흐름.">
-    <meta property="og:url" content="https://kivosy.com">
-    <link rel="canonical" href="https://kivosy.com">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    
-    <style>
-        /* 메인 페이지 전용 최적화 스타일 */
-        :root {
-            --hero-gradient: linear-gradient(180deg, #FFFFFF 0%, #F5F5F7 100%);
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', -apple-system, sans-serif;
-            margin: 0;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .hero-section {
-            padding: 100px 20px 80px;
-            text-align: center;
-            background: var(--hero-gradient);
-        }
-
-        .hero-title {
-            font-size: clamp(40px, 8vw, 64px); /* 반응형 폰트 크기 */
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            margin-bottom: 20px;
-            color: var(--text);
-            line-height: 1.1;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(16px, 4vw, 20px);
-            color: var(--text-secondary);
-            margin-bottom: 48px;
-            line-height: 1.6;
-            font-weight: 400;
-        }
-
-        .main-action-card {
-            max-width: 540px;
-            margin: 0 auto;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 28px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
-            transition: transform 0.3s ease;
-        }
-
-        .input-wrapper {
-            position: relative;
-            margin-bottom: 16px;
-        }
-
-        #prompt-input {
-            width: 100%;
-            padding: 20px;
-            border-radius: 16px;
-            border: 1px solid var(--border2);
-            font-size: 17px;
-            box-sizing: border-box;
-            transition: all 0.2s ease;
-            outline: none;
-            background: var(--surface2);
-        }
-
-        #prompt-input:focus {
-            border-color: var(--accent);
-            background: var(--surface);
-            box-shadow: 0 0 0 4px var(--accent-glow);
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            max-width: 1100px;
-            margin: 80px auto;
-            padding: 0 24px;
-        }
-
-        .feature-item {
-            background: var(--surface);
-            padding: 32px;
-            border-radius: 24px;
-            border: 1px solid var(--border2);
-            text-align: left;
-            transition: all 0.3s ease;
-        }
-
-        .feature-item:hover {
-            border-color: var(--border);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .feature-icon {
-            font-size: 32px;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        #topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 24px;
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border2);
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 20px;
-            letter-spacing: -0.03em;
-        }
-
-        .badge {
-            background: var(--text);
-            color: #fff;
-            font-size: 10px;
-            padding: 2px 8px;
-            border-radius: 6px;
-            margin-left: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VibeVote — Battle Polls</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .feed-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .page-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  /* Modal overlay */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-lg);
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-close {
+    position: absolute;
+    top: 14px; right: 14px;
+    background: none; border: none;
+    font-size: 16px; color: var(--muted);
+    cursor: pointer; padding: 4px;
+    line-height: 1;
+  }
+  .modal-close:hover { color: var(--text); }
+  .modal-title {
+    font-size: 16px; font-weight: 700;
+    margin-bottom: 20px;
+  }
+</style>
 </head>
 <body>
 
+<div id="progress-bar"></div>
+
+<!-- TOPBAR -->
 <header id="topbar">
-    <div class="topbar-left" style="display: flex; align-items: center;">
-        <span class="logo">KIVOSY</span>
-        <span class="badge">Platform</span>
+  <div class="topbar-left">
+    <span class="logo">Vibe<em>Vote</em></span>
+    <span class="badge">Beta</span>
+  </div>
+  <div class="topbar-right">
+    <div class="status-pill">
+      <span class="status-dot"></span>
+      <span id="topbar-count">0 polls</span>
     </div>
-    <div class="topbar-right">
-        <a href="https://tarot.kivosy.com" class="btn-secondary" style="font-size: 13px; text-decoration: none; padding: 8px 16px; border: 1px solid var(--border); border-radius: 20px; color: var(--text-secondary);">
-            Tarot Service →
-        </a>
-    </div>
+  </div>
 </header>
 
-<main>
-    <section class="hero-section">
-        <h1 class="hero-title">Beyond the Vote.</h1>
-        <p class="hero-subtitle">
-            커뮤니티의 화력을 데이터로 증명하세요.<br>
-            KIVOSY는 유입 경로별 여론 흐름을 실시간으로 분석합니다.
-        </p>
+<!-- STAGE — Poll Feed -->
+<div id="stage-wrap">
+  <div id="app-stage">
+    <div class="stage-content">
+      <div class="page-inner">
 
-        <div class="main-action-card">
-            <h2 style="margin-bottom: 28px; font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">새로운 분석 도구 생성</h2>
-            <div class="input-wrapper">
-                <input type="text" id="prompt-input" placeholder="대결 주제를 입력하세요 (예: iPhone vs Galaxy)" autocomplete="off">
-            </div>
-            <button id="send-btn" class="btn-primary" style="width: 100%; padding: 20px; font-size: 17px; font-weight: 600; border-radius: 16px; cursor: pointer;">
-                ⚡ 투표 생성 및 분석 시작
-            </button>
+        <div class="feed-header">
+          <span class="page-title">🔥 Live Battles</span>
         </div>
-    </section>
 
-    <section class="feature-grid">
-        <div class="feature-item">
-            <span class="feature-icon">🎯</span>
-            <h3 style="margin-bottom: 12px; font-size: 18px;">플랫폼 정밀 추적</h3>
-            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6;">X(트위터), 카카오톡, 디시인사이드 등 유입 경로에 따른 투표 성향을 완벽하게 분리 분석합니다.</p>
+        <div class="filter-row" id="filter-row">
+          <button class="chip chip-accent" data-filter="all">All</button>
+          <button class="chip" data-filter="hot">🔥 Hot</button>
+          <button class="chip" data-filter="new">✨ New</button>
+          <button class="chip" data-filter="sports">Sports</button>
+          <button class="chip" data-filter="food">Food</button>
+          <button class="chip" data-filter="entertainment">Entertainment</button>
+          <button class="chip" data-filter="tech">Tech</button>
+          <button class="chip" data-filter="politics">Politics</button>
         </div>
-        <div class="feature-item">
-            <span class="feature-icon">🛡️</span>
-            <h3 style="margin-bottom: 12px; font-size: 18px;">투명한 익명성</h3>
-            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6;">개인정보 수집 없이 오직 투표 데이터와 유입 로그만을 기록하여 여론의 투명성을 보장합니다.</p>
-        </div>
-        <div class="feature-item">
-            <span class="feature-icon">📊</span>
-            <h3 style="margin-bottom: 12px; font-size: 18px;">실시간 대시보드</h3>
-            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6;">투표 즉시 업데이트되는 시각화 도구를 통해 현재 여론의 우위를 한눈에 파악할 수 있습니다.</p>
-        </div>
-    </section>
-</main>
 
-<footer style="text-align: center; padding: 60px 20px; color: var(--muted); font-size: 13px;">
-    <div style="margin-bottom: 20px;">
-        <span style="font-weight: 700; color: var(--text);">KIVOSY Studio</span>
+        <div id="polls-list">
+          <!-- Rendered by main.js -->
+        </div>
+
+      </div>
     </div>
-    <p>&copy; 2026 KIVOSY Studio. All rights reserved.</p>
-    <div style="margin-top: 10px;">
-        <a href="#" style="color: var(--muted); text-decoration: none; margin: 0 10px;">Privacy</a>
-        <a href="#" style="color: var(--muted); text-decoration: none; margin: 0 10px;">Terms</a>
+  </div>
+</div>
+
+<!-- COCKPIT -->
+<div id="cockpit">
+  <div id="ai-voice">One link. Every source. All data.</div>
+  <div id="chips-row">
+    <button class="chip chip-accent" id="btn-open-create">＋ New Poll</button>
+    <button class="chip" id="btn-load-demo">👀 Load Demo Data</button>
+  </div>
+  <div id="input-row">
+    <textarea id="prompt-input" rows="1"
+      placeholder="Quick create: type &quot;Question / Option A / Option B&quot; and press ⏎"></textarea>
+    <button id="send-btn" title="Create poll">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- CREATE MODAL -->
+<div class="modal-overlay" id="create-modal">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close">✕</button>
+    <h2 class="modal-title">⚡ Create Battle Poll</h2>
+
+    <form id="create-form">
+      <div class="form-group">
+        <label class="form-label">Question / Title</label>
+        <input class="form-input" id="cf-title" type="text"
+          placeholder="e.g. Kyochon vs BHC — best fried chicken?" required maxlength="120">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Options</label>
+        <div class="options-grid">
+          <input class="form-input option-input-a" id="cf-optA"
+            type="text" placeholder="Option A" required maxlength="60">
+          <input class="form-input option-input-b" id="cf-optB"
+            type="text" placeholder="Option B" required maxlength="60">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Category</label>
+        <select class="category-select" id="cf-cat">
+          <option value="general">General</option>
+          <option value="food">Food</option>
+          <option value="sports">Sports</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="tech">Tech</option>
+          <option value="politics">Politics</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-primary" style="margin-top:6px;">⚡ Create &amp; Get Link</button>
+    </form>
+
+    <!-- After creation -->
+    <div id="create-result" style="display:none; margin-top:20px;">
+      <div class="divider" style="margin-top:0;"></div>
+      <p class="section-heading" style="margin-bottom:10px;">Your link — share anywhere</p>
+      <div class="link-box">
+        <span class="link-url-text" id="result-url"></span>
+        <button class="btn-copy-link" id="btn-copy-result">Copy</button>
+      </div>
+      <p style="font-size:11px;color:var(--muted);margin-top:8px;font-family:var(--font-mono);">
+        VibeVote auto-detects which site each voter came from. No UTM needed.
+      </p>
+      <div style="display:flex;gap:8px;margin-top:12px;">
+        <a id="result-vote-link" href="#" class="btn-secondary" style="flex:1;justify-content:center;font-size:12px;">
+          🗳 Vote
+        </a>
+        <a id="result-dash-link" href="#" class="btn-secondary" style="flex:1;justify-content:center;font-size:12px;">
+          📊 Dashboard
+        </a>
+      </div>
     </div>
+  </div>
+</div>
+
+<footer style="max-width: 800px; margin: 80px auto 140px; padding: 40px 20px; border-top: 1px solid var(--border2); color: var(--text-secondary);">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+    <div>
+      <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--text);">About VibeVote</h3>
+      <p style="font-size: 14px; line-height: 1.6;">VibeVote is a high-fidelity polling platform designed to bridge the gap between social communities. We provide real-time battle polls with deep source analytics, allowing creators to see exactly where their audience's "vibe" is coming from.</p>
+    </div>
+    <div>
+      <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--text);">How it Works</h3>
+      <p style="font-size: 14px; line-height: 1.6;">Using Cloudflare's edge network and D1 database, we track and visualize every vote instantly. Our unique source-detection technology identifies traffic from platforms like X, Reddit, and Naver without invasive tracking or complex UTM parameters.</p>
+    </div>
+  </div>
+  <p style="margin-top: 40px; font-size: 12px; color: var(--muted); text-align: center;">© 2026 KIVOSY STUDIO. All rights reserved. <br> Built for the open social web.</p>
 </footer>
 
-<script>
-    // 입력창 포커스 효과 및 버튼 클릭 이벤트
-    document.getElementById('send-btn').addEventListener('click', function() {
-        const input = document.getElementById('prompt-input').value;
-        if(input.trim() === "") {
-            alert("주제를 입력해 주세요!");
-            return;
-        }
-        alert("분석 도구를 생성 중입니다: " + input);
-        // 여기에 투표 생성 로직 연결
-    });
-
-    // 엔터키 지원
-    document.getElementById('prompt-input').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            document.getElementById('send-btn').click();
-        }
-    });
-</script>
-
+<script src="create.js"></script>
+<script src="main.js"></script>
 </body>
 </html>

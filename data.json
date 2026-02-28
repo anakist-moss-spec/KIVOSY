@@ -1,0 +1,48 @@
+{
+  "polls": [
+    {
+      "id": "demo01",
+      "title": "Kyochon vs BHC — Who has the best fried chicken?",
+      "optionA": "Kyochon",
+      "optionB": "BHC",
+      "category": "food",
+      "createdAt": "2026-02-27T10:00:00Z"
+    },
+    {
+      "id": "demo02",
+      "title": "손흥민 vs 이강인 — 한국 최고의 선수는?",
+      "optionA": "손흥민",
+      "optionB": "이강인",
+      "category": "sports",
+      "createdAt": "2026-02-27T11:30:00Z"
+    }
+  ],
+  "votes": [
+    {
+      "pollId": "demo01",
+      "choice": "Kyochon",
+      "source": {
+        "type": "web",
+        "domain": "chat.deepseek.com",
+        "displayName": "🤖 DeepSeek Chat",
+        "fullUrl": "https://chat.deepseek.com/a/chat/s/1ae7ad52",
+        "path": "/a/chat/s/1ae7ad52"
+      },
+      "timestamp": "2026-02-27T12:05:00Z",
+      "userAgent": "Mozilla/5.0"
+    },
+    {
+      "pollId": "demo01",
+      "choice": "BHC",
+      "source": {
+        "type": "web",
+        "domain": "twitter.com",
+        "displayName": "🐦 X/Twitter",
+        "fullUrl": "https://twitter.com",
+        "path": "/"
+      },
+      "timestamp": "2026-02-27T12:06:00Z",
+      "userAgent": "Mozilla/5.0"
+    }
+  ]
+}

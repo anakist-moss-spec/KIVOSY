@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VibeVote — Results Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="progress-bar" class="loading"></div>
+
+<!-- TOPBAR -->
+<header id="topbar">
+  <div class="topbar-left">
+    <a href="index.html" style="text-decoration:none;">
+      <span class="logo">Vibe<em>Vote</em></span>
+    </a>
+    <span class="badge">Dashboard</span>
+  </div>
+  <div class="topbar-right">
+    <div class="status-pill" id="live-pill">
+      <span class="status-dot"></span>
+      <span>Live</span>
+    </div>
+    <span id="topbar-vote-count" style="font-size:11px;font-family:var(--font-mono);color:var(--muted);">
+      0 votes
+    </span>
+  </div>
+</header>
+
+<!-- STAGE -->
+<div id="stage-wrap">
+  <div id="app-stage">
+    <div class="stage-content">
+      <div class="page-inner" id="dash-content">
+        <!-- Rendered by dashboard.js -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COCKPIT -->
+<div id="cockpit">
+  <div id="ai-voice">Auto-refreshing every 2s · Source detected from referrer</div>
+  <div id="chips-row">
+    <a href="index.html" class="chip">← Feed</a>
+    <button class="chip" id="btn-new-poll">＋ New Poll</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

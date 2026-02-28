@@ -1,0 +1,19 @@
+# 레포지토리 이름: vibevote
+# 파일 구조:
+/vibevote
+├── index.html      # 메인 피드
+├── vote.html       # 투표 페이지
+├── dashboard.html  # 결과 대시보드
+├── create.html     # 투표 생성
+│
+│
+│
+├── styles.css      # CSS (당신이 준 그대로)
+│
+│
+│
+├── main.js         # 메인 로직
+├── vote.js         # 투표 처리
+├── dashboard.js    # 결과 집계
+├── create.js       # 생성 로직
+└── data.json       # 샘플 데이터

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VibeVote — Cast Your Vote</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<!-- ── Open Graph / Social preview tags ─────────────────────────────────
+     Static defaults — updated by og-init.js once poll data is available.
+     When deployed to kivosy.com, the Cloudflare Worker at /api/og/[pollId].png
+     serves a dynamically-rendered PNG with live vote counts baked in.
+──────────────────────────────────────────────────────────────────────── -->
+<meta property="og:site_name"   content="VibeVote">
+<meta property="og:type"        content="website">
+<meta id="og-title"       property="og:title"       content="VibeVote — A vs B? You decide.">
+<meta id="og-description" property="og:description" content="Live battle poll — vote and see which community picks which side.">
+<meta id="og-image"       property="og:image"       content="https://kivosy.com/og-default.png">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+<meta id="og-url"         property="og:url"         content="https://kivosy.com/vote.html">
+
+<!-- Twitter / X card -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta id="tw-title"       name="twitter:title"       content="VibeVote — A vs B? You decide.">
+<meta id="tw-description" name="twitter:description" content="Live battle poll — vote and see which community picks which side.">
+<meta id="tw-image"       name="twitter:image"       content="https://kivosy.com/og-default.png">
+
+<script>
+// ── OG tag updater — runs synchronously in <head> ──────────────────────────
+// Reads pollId from URL and poll data from localStorage, then patches all OG
+// and Twitter meta tags so social crawlers see accurate poll content.
+// The og:image points to the Cloudflare Worker endpoint which renders a live
+// PNG for each poll (see /api/og/worker.js for the Worker implementation).
+(function () {
+  try {
+    var pollId = new URLSearchParams(location.search).get('pollId');
+    if (!pollId) return;
+
+    var polls = JSON.parse(localStorage.getItem('vv_polls') || '[]');
+    var poll  = polls.find(function (p) { return p.id === pollId; });
+    if (!poll) return;
+
+    var votes = JSON.parse(localStorage.getItem('vv_votes_' + pollId) || '[]');
+    var aTotal = votes.filter(function (v) { return v.choice === poll.optionA; }).length;
+    var bTotal = votes.filter(function (v) { return v.choice === poll.optionB; }).length;
+    var total  = aTotal + bTotal;
+    var aPct   = total > 0 ? Math.round((aTotal / total) * 100) : 50;
+    var bPct   = 100 - aPct;
+
+    var desc = total > 0
+      ? poll.optionA + ' ' + aPct + '% vs ' + poll.optionB + ' ' + bPct + '% \u00b7 ' + total + ' votes'
+      : 'Vote now — which side are you on?';
+
+    // NOTE: localhost dev will use /og-default.png. On kivosy.com the Worker
+    // intercepts /api/og/*.png and returns a dynamically rendered image.
+    var imageUrl = 'https://kivosy-api.anakist-y.workers.dev/api/og/' + pollId + '.png';
+    var pageUrl  = 'https://kivosy.com/vote.html?pollId=' + pollId;
+
+    function setMeta(id, attr, val) {
+      var el = document.getElementById(id);
+      if (el) el.setAttribute(attr, val);
+    }
+
+    document.title = poll.title + ' — VibeVote';
+    setMeta('og-title',       'content', poll.title);
+    setMeta('og-description', 'content', desc);
+    setMeta('og-image',       'content', imageUrl);
+    setMeta('og-url',         'content', pageUrl);
+    setMeta('tw-title',       'content', poll.title);
+    setMeta('tw-description', 'content', desc);
+    setMeta('tw-image',       'content', imageUrl);
+  } catch (e) { /* never block page load */ }
+})();
+</script>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- TOPBAR -->
+<header id="topbar">
+  <div class="topbar-left">
+    <a href="index.html" style="text-decoration:none;">
+      <span class="logo">Vibe<em>Vote</em></span>
+    </a>
+    <span class="badge">Vote</span>
+  </div>
+  <div class="topbar-right">
+    <div class="status-pill">
+      <span class="status-dot"></span>
+      <span>Live</span>
+    </div>
+  </div>
+</header>
+
+<!-- STAGE -->
+<div id="stage-wrap">
+  <div id="app-stage">
+    <div class="stage-content">
+      <div class="page-inner" id="vote-content">
+        <!-- Filled by vote.js -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COCKPIT -->
+<div id="cockpit">
+  <div id="ai-voice">Your vote is anonymous. Source is auto-detected.</div>
+  <div id="chips-row">
+    <a href="index.html" class="chip">← Feed</a>
+    <a href="index.html" class="chip">＋ New Poll</a>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="vote.js"></script>
+</body>
+</html>
