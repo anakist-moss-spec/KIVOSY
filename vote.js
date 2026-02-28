@@ -130,9 +130,13 @@
   }
 
   function buildDashUrl(pollId) {
-    return window.location.href
-      .replace('vote.html', 'dashboard.html')
-      .replace(/\?.*$/, '') + `?pollId=${pollId}`;
+    // 현재 URL에서 프로토콜 + 도메인 추출
+    const protocol = window.location.protocol;  // 'https:'
+    const hostname = window.location.hostname;  // 'kivosy.com'
+    const port = window.location.port ? ':' + window.location.port : '';
+    
+    // 안전하게 대시보드 URL 생성
+    return `${protocol}//${hostname}${port}/dashboard.html?pollId=${pollId}`;
   }
 
   function escHtml(s) {
