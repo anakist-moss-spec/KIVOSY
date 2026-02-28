@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-# 실제 서비스 중인 대표 도메인 주소로 변경합니다.
-Sitemap: https://kivosy.com/sitemap.xml

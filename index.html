@@ -1,362 +1,237 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5981094525589755" crossorigin="anonymous"></script>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TP46CVMP');</script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIVOSY — 세상의 모든 목소리가 데이터가 되는 곳</title>
     
-    <title>KIVOSY | Premium AI Yes No Tarot - Instant Cosmic Guidance</title>
-    <meta name="description" content="Experience the future of tarot with KIVOSY. Get instant, deep insights from multiple AI personas with luxury golden line art cards. Your daily cosmic compass for accurate Yes/No answers.">
-    <meta name="keywords" content="yes no tarot, free tarot reading, instant tarot, online tarot oracle, AI tarot, KIVOSY, golden tarot">
-    
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="KIVOSY: Your Daily Cosmic Compass">
-    <meta property="og:description" content="Multiple AIs analyze your destiny. Flip your golden card now and get the Universe's direct guidance.">
-    <meta property="og:image" content="https://kivosy.com/img/og-preview.png"> <meta property="og:url" content="https://kivosy.com">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="description" content="커뮤니티의 화력을 데이터로 증명하세요. 유입 경로별 투표 성향 분석 및 실시간 대시보드를 제공하는 여론 분석 플랫폼 KIVOSY입니다.">
+    <meta name="keywords" content="투표, 설문조사, 여론분석, 커뮤니티 투표, 실시간 투표, 데이터 시각화">
+    <meta property="og:title" content="KIVOSY — Beyond the Vote">
+    <meta property="og:description" content="단순한 투표를 넘어 데이터로 증명하는 여론의 흐름.">
+    <meta property="og:url" content="https://kivosy.com">
+    <link rel="canonical" href="https://kivosy.com">
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "KIVOSY AI Yes/No Tarot",
-      "url": "https://kivosy.com",
-      "applicationCategory": "EntertainmentApplication",
-      "about": "Instant yes or no tarot card reading for daily guidance powered by multiple AI interpretations.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="img/favicon.png">
+    <style>
+        /* 메인 페이지 전용 최적화 스타일 */
+        :root {
+            --hero-gradient: linear-gradient(180deg, #FFFFFF 0%, #F5F5F7 100%);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .hero-section {
+            padding: 100px 20px 80px;
+            text-align: center;
+            background: var(--hero-gradient);
+        }
+
+        .hero-title {
+            font-size: clamp(40px, 8vw, 64px); /* 반응형 폰트 크기 */
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: 20px;
+            color: var(--text);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 4vw, 20px);
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .main-action-card {
+            max-width: 540px;
+            margin: 0 auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease;
+        }
+
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        #prompt-input {
+            width: 100%;
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border2);
+            font-size: 17px;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+            outline: none;
+            background: var(--surface2);
+        }
+
+        #prompt-input:focus {
+            border-color: var(--accent);
+            background: var(--surface);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1100px;
+            margin: 80px auto;
+            padding: 0 24px;
+        }
+
+        .feature-item {
+            background: var(--surface);
+            padding: 32px;
+            border-radius: 24px;
+            border: 1px solid var(--border2);
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            border-color: var(--border);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        #topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border2);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -0.03em;
+        }
+
+        .badge {
+            background: var(--text);
+            color: #fff;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            margin-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
 </head>
-
 <body>
 
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP46CVMP"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
-    <header style="padding: 40px 20px 20px;">
-        <h1>✨ KIVOSY Yes/No Tarot</h1>
-        <p>Your instant answer from the universe</p>
-        
-        <nav style="margin-top: 25px; display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
-            
-            <a href="all-cards.html" style="color: var(--gold); text-decoration: none; font-size: 0.85rem; border: 1px solid rgba(255,215,0,0.4); padding: 7px 18px; border-radius: 20px; background: rgba(255,215,0,0.05); transition: 0.3s;">
-                ☰ View All Cards
-            </a>
-
-            <div class="language-selector">
-                <select onchange="location.href=this.value" style="background: #111; color: var(--gold); border: 1px solid rgba(255,215,0,0.4); padding: 7px 15px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; text-align: center;">
-                    <option value="all-cards.html">🌐 English</option>
-                    <option value="all-cards-ko.html">한국어</option>
-                    <option value="all-cards-ja.html">日本語</option>
-                    <option value="all-cards-zh-CN.html">简体中文</option>
-                    <option value="all-cards-zh-TW.html">繁體中文</option>
-                    <option value="all-cards-es.html">Español</option>
-                    <option value="all-cards-pt.html">Português</option>
-                    <option value="all-cards-fr.html">Français</option>
-                    <option value="all-cards-de.html">Deutsch</option>
-                    <option value="all-cards-it.html">Italiano</option>
-                    <option value="all-cards-ru.html">Русский</option>
-                    <option value="all-cards-id.html">Bahasa Indonesia</option>
-                    <option value="all-cards-tr.html">Türkçe</option>
-                    <option value="all-cards-vi.html">Tiếng Việt</option>
-                    <option value="all-cards-ar.html">العربية</option>
-                    <option value="all-cards-th.html">ไทย</option>
-                    <option value="all-cards-hi.html">हिन्दी</option>
-                    <option value="all-cards-pl.html">Polski</option>
-                </select>
-            </div>
-        </nav>
-    </header>
-
-    <div class="ad-slot">AD_PLACEHOLDER (728x90)</div>
-
-    <div id="kivosyLoader" class="kivosy-loader">
-        <div class="loader-text" id="loaderMessage">KIVOSY is reading the stars for you...</div>
+<header id="topbar">
+    <div class="topbar-left" style="display: flex; align-items: center;">
+        <span class="logo">KIVOSY</span>
+        <span class="badge">Platform</span>
     </div>
-
-    <div class="daily-oracle-banner" onclick="DailyFortune.handleRequest('Daily')">
-        <div class="banner-content">
-            <span class="sparkle">✨</span>
-            <strong>Reveal Your Daily Destiny</strong>
-            <p>One card, one destiny. Only once a day.</p>
-        </div>
+    <div class="topbar-right">
+        <a href="https://tarot.kivosy.com" class="btn-secondary" style="font-size: 13px; text-decoration: none; padding: 8px 16px; border: 1px solid var(--border); border-radius: 20px; color: var(--text-secondary);">
+            Tarot Service →
+        </a>
     </div>
+</header>
 
-    <div class="container">
-        <div class="input-group">
-            <input type="text" id="question" placeholder="Ask about Love, Success, or Wealth... (e.g. Will I find love?)" autocomplete="off">
-        </div>
+<main>
+    <section class="hero-section">
+        <h1 class="hero-title">Beyond the Vote.</h1>
+        <p class="hero-subtitle">
+            커뮤니티의 화력을 데이터로 증명하세요.<br>
+            KIVOSY는 유입 경로별 여론 흐름을 실시간으로 분석합니다.
+        </p>
 
-        <div class="keyword-buttons">
-            <button class="key-btn" onclick="setQuestion('Will I find true love soon?'); DailyFortune.handleRequest('Love')">#Love 💖</button>
-            <button class="key-btn" onclick="setQuestion('Will I get a promotion or raise?'); DailyFortune.handleRequest('Money')">#Money 💰</button>
-            <button class="key-btn" onclick="setQuestion('Should I start this new project?'); DailyFortune.handleRequest('Success')">#Success 🚀</button>
-            <button class="key-btn" onclick="setQuestion('Is today a lucky day for me?'); DailyFortune.handleRequest('Daily')">#Daily ✨</button>
-        </div>
-
-        <div class="card-wrapper" onclick="drawCard()">
-            <div class="card-inner" id="cardInner">
-                <div class="card-back"></div>
-                <div class="card-front">
-                    <img id="cardImage" src="" alt="Tarot Card" class="card-img">
-                </div>
+        <div class="main-action-card">
+            <h2 style="margin-bottom: 28px; font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">새로운 분석 도구 생성</h2>
+            <div class="input-wrapper">
+                <input type="text" id="prompt-input" placeholder="대결 주제를 입력하세요 (예: iPhone vs Galaxy)" autocomplete="off">
             </div>
-        </div>
-
-        <div class="result-area" id="resultArea" style="display: none;">
-            <div class="answer" id="answerText">YES</div>
-            <div id="cardName" style="color: var(--gold); margin-bottom: 10px; font-weight: bold; font-size: 1.2rem;">The Sun</div>
-            
-            <div id="aiSource" class="ai-source"></div>
-
-            <div id="feedback-area" style="margin-top: 20px; text-align: center;">
-                <p style="color: #eee; font-size: 0.9em;">Was this interpretation helpful?</p>
-                <button id="like-btn" class="feedback-btn" style="cursor: pointer;">👍 Yes</button>
-                <button id="dislike-btn" class="feedback-btn" style="cursor: pointer;">👎 No</button>
-            </div>
-
-            <div class="interpretation" id="descText">Sample interpretation...</div>
-
-            <button id="readMoreBtn" class="action-btn" style="display: none; margin: 15px auto; background: none; border: 1px solid var(--gold); color: var(--gold); padding: 8px 20px; cursor: pointer;">
-                Read More... ✨
+            <button id="send-btn" class="btn-primary" style="width: 100%; padding: 20px; font-size: 17px; font-weight: 600; border-radius: 16px; cursor: pointer;">
+                ⚡ 투표 생성 및 분석 시작
             </button>
-
-            <div id="follow-up-container" style="margin-top: 30px; display: flex; flex-direction: column; gap: 10px;">
-            </div>
-            
-            <div class="support-section" style="text-align: center; margin-top: 40px; padding: 20px; border-top: 1px rgba(255,215,0,0.1) solid;">
-                <button class="action-btn reset-btn" onclick="resetGame()">Try Again 🔮</button>
-                <button class="action-btn save-btn" id="save-btn" onclick="saveCardImage()">Save Card 📸</button>
-                
-                <p style="color: #aaa; font-size: 0.8rem; margin: 20px 0 12px 0;">Enjoyed your reading? ✨</p>
-                <a href="https://www.buymeacoffee.com/anakist124" target="_blank" style="text-decoration: none; display: inline-block;">
-                    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" 
-                        alt="Buy Me A Coffee" 
-                        style="height: 40px !important; width: auto !important; transition: transform 0.3s ease;">
-                </a>
-            </div>
-        </div> 
-    </div>
-
-    <div class="ad-slot">AD_PLACEHOLDER (728x90)</div>
-
-    <section id="history-section" class="container" style="margin-top: 80px; border-top: 2px solid rgba(212, 175, 55, 0.2); padding-top: 40px;">
-        <h2 style="color: var(--gold); text-align: center; margin-bottom: 30px;">📜 Your Cosmic Records</h2>
-        
-        <div id="energy-summary"></div> 
-
-        <div class="chart-container" style="background: rgba(255,215,0,0.05); padding: 20px; border-radius: 15px; margin-bottom: 30px; height: 250px; position: relative;">
-            <canvas id="destinyChart"></canvas>
-        </div>
-
-        <div id="history-gallery" class="history-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px;">
         </div>
     </section>
 
-    <article class="seo-content">
-        <h2>How Does KIVOSY Yes or No Tarot Work?</h2>
-        <p style="color: var(--gold); font-style: italic; margin-bottom: 20px;">
-            "Our AI-powered algorithm provides the most accurate Yes or No Tarot answers, combining traditional wisdom with modern technology."
-        <p>The <strong>Yes No Tarot</strong> is a powerful, instantaneous tool for those seeking immediate guidance from the universe. Unlike complex multi-card spreads that can be overwhelming, this one-card oracle focuses on the core energy of your specific inquiry. Whether you are facing a crossroads in <strong>love, career, or daily life decisions</strong>, our digital oracle provides clear 'Yes', 'No', or 'Maybe' answers based on the 78 traditional Rider-Waite interpretations.</p>
-
-        <h3>The Ancient Art of Tarot Divination</h3>
-        <p>For centuries, tarot cards have served as a mirror to the subconscious mind. A traditional deck consists of 78 cards, each vibrating with unique symbolism and archetypal wisdom. When you focus on a question and draw a card, you aren't just clicking a button—you are aligning yourself with the synchronicities of the cosmos. Our platform uses high-entropy randomization to ensure every draw is as unique and spiritually resonant as a physical shuffle.</p>
-
-        <h3>Is Yes/No Tarot Accurate?</h3>
-        <p>Accuracy in tarot depends on three main factors: your openness, the clarity of your question, and your intuitive connection. While no divination tool can predict an absolute, unchangeable future, many find that the cards offer remarkably insightful perspectives. Think of the tarot as a wise friend—it offers guidance and warnings, but the final power to act always remains in your hands.</p>
-
-        <h3>When to Consult the Oracle</h3>
-        <ul>
-            <li><strong>Quick Decisions:</strong> When you need immediate clarity on a pressing matter.</li>
-            <li><strong>Daily Guidance:</strong> Start your morning by asking for the day's primary energy.</li>
-            <li><strong>Relationship Insights:</strong> "Is it time to reach out?" or "Is this connection healthy?"</li>
-            <li><strong>Career & Success:</strong> Gain confidence before applying for a job or accepting an offer.</li>
-            <li><strong>Spiritual Reflection:</strong> Use the answer to meditate on your current path.</li>
-        </ul>
-
-        <h3>4 Tips for a Professional Reading</h3>
-        <ol>
-            <li><strong>Be Specific:</strong> Instead of "Will I be rich?", try "Is this investment the right move for me now?"</li>
-            <li><strong>Stay Open-Minded:</strong> Sometimes a 'NO' is the universe protecting you from an unseen obstacle.</li>
-            <li><strong>Single Focus:</strong> Take a deep breath and visualize your question before you click the card.</li>
-            <li><strong>Respect the Answer:</strong> Avoid asking the same question repeatedly in one session; trust the first guidance you receive.</li>
-        </ol>
-
-        <h3>Understanding the Major Arcana</h3>
-        <p>The 22 Major Arcana cards represent life's significant spiritual lessons. Positive archetypes like <strong>The Sun, The World, and The Star</strong> are powerful 'YES' indicators. Conversely, cards like <strong>The Tower, Death, or The Devil</strong> often suggest a 'NO' or a need for major transformation. Every card in our deck includes a detailed interpretation to help you understand the "Why" behind the "Yes" or "No".</p>
-
-        <h3>Why Choose Our KIVOSY Tarot?</h3>
-        <ul>
-            <li><strong>100% Free:</strong> No registration, no hidden fees, no strings attached.</li>
-            <li><strong>Instant Answers:</strong> Get divine guidance in seconds with our optimized engine.</li>
-            <li><strong>Mobile-First Design:</strong> Beautiful, KIVOSY experience on any device, anywhere.</li>
-            <li><strong>Full 78-Card Deck:</strong> Includes all Minor and Major Arcana for maximum depth.</li>
-            <li><strong>Privacy First:</strong> Your questions are your own; we never store your personal inquiries.</li>
-        </ul>
-
-        <h3 style="text-align: center; margin-top: 60px; letter-spacing: 1px;">Frequently Asked Questions (FAQ)</h3>
-        
-        <div class="faq-container" style="max-width: 100%; margin: 30px auto; text-align: left;">
-            <div class="faq-item" style="margin-bottom: 25px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); padding-bottom: 20px;">
-                <p><strong>Q: Can I ask the same question twice?</strong><br>
-                <span style="color: #aaa; font-size: 0.95rem; display: block; margin-top: 8px;">
-                    A: We recommend asking once and reflecting. If you ask until you get the answer you want, you lose the intuitive benefit of the reading.
-                </span></p>
-            </div>
-            
-            <div class="faq-item" style="margin-bottom: 25px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); padding-bottom: 20px;">
-                <p><strong>Q: Does a 'Maybe' mean the cards don't know?</strong><br>
-                <span style="color: #aaa; font-size: 0.95rem; display: block; margin-top: 8px;">
-                    A: A 'Maybe' (like The Moon) usually suggests that the situation is still in flux or there is hidden information you haven't seen yet.
-                </span></p>
-            </div>
-            
-            <div class="faq-item" style="margin-bottom: 10px;">
-                <p><strong>Q: Is this a replacement for professional advice?</strong><br>
-                <span style="color: #aaa; font-size: 0.95rem; display: block; margin-top: 8px;">
-                    A: No. Tarot is for entertainment and spiritual guidance only. For medical, legal, or financial decisions, always consult a qualified professional.
-                </span></p>
-            </div>
+    <section class="feature-grid">
+        <div class="feature-item">
+            <span class="feature-icon">🎯</span>
+            <h3 style="margin-bottom: 12px; font-size: 18px;">플랫폼 정밀 추적</h3>
+            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6;">X(트위터), 카카오톡, 디시인사이드 등 유입 경로에 따른 투표 성향을 완벽하게 분리 분석합니다.</p>
         </div>
-    </article>
+        <div class="feature-item">
+            <span class="feature-icon">🛡️</span>
+            <h3 style="margin-bottom: 12px; font-size: 18px;">투명한 익명성</h3>
+            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6;">개인정보 수집 없이 오직 투표 데이터와 유입 로그만을 기록하여 여론의 투명성을 보장합니다.</p>
+        </div>
+        <div class="feature-item">
+            <span class="feature-icon">📊</span>
+            <h3 style="margin-bottom: 12px; font-size: 18px;">실시간 대시보드</h3>
+            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6;">투표 즉시 업데이트되는 시각화 도구를 통해 현재 여론의 우위를 한눈에 파악할 수 있습니다.</p>
+        </div>
+    </section>
+</main>
 
-    <script>
-        
-        // 뒷면 이미지 랜덤 설정 함수
-        function setRandomBack() {
-            // 이제 실제 경로인 img/tarot/back/ 으로 연결합니다!
-            const backImages = ['img/tarot/back/back1.webp', 'img/tarot/back/back2.webp']; //← 내컴퓨터 & 깃허브 경로
-            const randomBack = backImages[Math.floor(Math.random() * backImages.length)];
-            const cardBack = document.querySelector('.card-back');
-            if (cardBack) cardBack.style.backgroundImage = `url('${randomBack}')`;
+<footer style="text-align: center; padding: 60px 20px; color: var(--muted); font-size: 13px;">
+    <div style="margin-bottom: 20px;">
+        <span style="font-weight: 700; color: var(--text);">KIVOSY Studio</span>
+    </div>
+    <p>&copy; 2026 KIVOSY Studio. All rights reserved.</p>
+    <div style="margin-top: 10px;">
+        <a href="#" style="color: var(--muted); text-decoration: none; margin: 0 10px;">Privacy</a>
+        <a href="#" style="color: var(--muted); text-decoration: none; margin: 0 10px;">Terms</a>
+    </div>
+</footer>
+
+<script>
+    // 입력창 포커스 효과 및 버튼 클릭 이벤트
+    document.getElementById('send-btn').addEventListener('click', function() {
+        const input = document.getElementById('prompt-input').value;
+        if(input.trim() === "") {
+            alert("주제를 입력해 주세요!");
+            return;
         }
+        alert("분석 도구를 생성 중입니다: " + input);
+        // 여기에 투표 생성 로직 연결
+    });
 
-        // Privacy Policy 토글 함수 (한 번에 열리도록 수정)
-        function togglePrivacy() {
-            const content = document.getElementById('privacyContent');
-            // 계산된 스타일을 체크하거나, 현재 상태가 block이 아니면 열어줍니다.
-            if (window.getComputedStyle(content).display === 'none') {
-                content.style.display = 'block';
-                // 부드럽게 아래로 스크롤
-                setTimeout(() => {
-                    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-                }, 10);
-            } else {
-                content.style.display = 'none';
-            }
+    // 엔터키 지원
+    document.getElementById('prompt-input').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            document.getElementById('send-btn').click();
         }
-        
-        window.onload = function() {
-            // 1. 기존 기능들 (뒷면 랜덤, 별그리기)
-            setRandomBack();
+    });
+</script>
 
-            // 2. 새로고침 시 맨 위로 스크롤 고정
-            if ('scrollRestoration' in history) {
-                history.scrollRestoration = 'manual';
-            }
-            window.scrollTo(0, 0); 
-
-            // 3. 커서 깜빡이기 (입력창에 초점 맞추기)
-            const qInput = document.getElementById('question');
-            if (qInput) {
-                qInput.focus();
-            }
-        };
-
-    </script>
-
-    
-    <footer class="kivosy-footer" style="padding-top: 5px !important; margin-top: 30px;">
-      
-        <div style="margin-bottom: 25px;">
-            <h3 style="color: var(--gold, #FFD700); font-size: 0.9rem; margin-bottom: 15px; opacity: 0.7; letter-spacing: 1px;">
-                🌐 EXPLORE IN YOUR LANGUAGE
-            </h3>
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; max-width: 900px; margin: 0 auto; line-height: 1.4;">
-                <a href="all-cards.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">English</a>
-                <a href="all-cards-ko.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">한국어</a>
-                <a href="all-cards-ja.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">日本語</a>
-                <a href="all-cards-zh-CN.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">简体中文</a>
-                <a href="all-cards-zh-TW.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">繁體中文</a>
-                <a href="all-cards-es.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Español</a>
-                <a href="all-cards-pt.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Português</a>
-                <a href="all-cards-fr.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Français</a>
-                <a href="all-cards-de.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Deutsch</a>
-                <a href="all-cards-it.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Italiano</a>
-                <a href="all-cards-ru.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Русский</a>
-                <a href="all-cards-id.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Bahasa Indonesia</a>
-                <a href="all-cards-tr.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Türkçe</a>
-                <a href="all-cards-vi.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Tiếng Việt</a>
-                <a href="all-cards-ar.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">العربية</a>
-                <a href="all-cards-th.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">ไทย</a>
-                <a href="all-cards-hi.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">हिन्दी</a>
-                <a href="all-cards-pl.html" style="color: #999; text-decoration: none; font-size: 0.75rem;">Polski</a>
-            </div>
-        </div>
-
-        <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 30px;">
-            <a href="https://lab.kivosy.com" style="color: var(--gold, #FFD700); text-decoration: none; font-size: 0.85rem;">🚀 AI Research Lab</a>
-            <a href="https://chromewebstore.google.com/detail/ai-insight-exporter-dark/bphlglibkflmchboioecbdgmgepeojdd" style="color: var(--gold, #FFD700); text-decoration: none; font-size: 0.85rem;">🔌 Chrome Extension</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTSDIioJ_AewFfH1S1aAIqKCRt3iROqbyPULl-9S6gsBpjxw/viewform" target="_blank" style="color: var(--gold, #FFD700); text-decoration: none; font-size: 0.85rem;">✨ Send Feedback</a>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <a href="all-cards.html" style="color: var(--gold, #FFD700); text-decoration: none; font-weight: bold;">All Tarot Cards Library</a>
-        </div>
-        <p style="margin: 5px 0;">&copy; 2026 <strong>KIVOSY Yes/No Tarot & Labs</strong>. All rights reserved.</p>
-        
-        <div style="margin-top: 20px; margin-bottom: 20px;">
-            <a href="javascript:void(0)" 
-                onclick="const el = document.getElementById('privacyContent'); el.style.display = (el.style.display === 'block') ? 'none' : 'block';" 
-                style="display: inline-block; 
-                        padding: 6px 16px; 
-                        border: 1px solid #444; 
-                        border-radius: 20px; 
-                        color: #888; 
-                        text-decoration: none; 
-                        font-size: 0.75rem; 
-                        transition: all 0.3s ease; 
-                        background: rgba(255, 255, 255, 0.05);">
-                Privacy Policy
-            </a>
-        </div>
-        
-        <div id="privacyContent" class="privacy-box">
-            <h3>Privacy Policy</h3>
-            <p>At KIVOSY, accessible from kivosy.com, one of our main priorities is the privacy of our visitors.</p>
-            
-            <p><b>1. Log Files:</b> KIVOSY follows a standard procedure of using log files. These files log visitors when they visit websites. The information collected includes IP addresses, browser type, Internet Service Provider (ISP), date and time stamp, and referring/exit pages.</p>
-            
-            <p><b>2. Cookies and Web Beacons:</b> Like any other website, KIVOSY uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited.</p>
-            
-            <p><b>3. Google DoubleClick DART Cookie:</b> Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to kivosy.com and other sites on the internet. Visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy.</p>
-            
-            <p><b>4. Our Advertising Partners:</b> Some of advertisers on our site may use cookies and web beacons. Our advertising partners include Google AdSense. Each of our advertising partners has their own Privacy Policy for their policies on user data.</p>
-            
-            <p><b>5. Consent:</b> By using our website, you hereby consent to our Privacy Policy and agree to its Terms and Conditions.</p>
-        </div>
-    </footer>
-
-    <audio id="sound-click" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" preload="auto"></audio>
-    <audio id="sound-flip" src="https://assets.mixkit.co/active_storage/sfx/2014/2014-preview.mp3" preload="auto"></audio>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
-
-    <script src="tarotData.js"></script>
-
-    <script src="daily-fortune.js"></script> 
-
-    <script src="script.js"></script>
 </body>
 </html>
