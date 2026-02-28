@@ -1,0 +1,7 @@
+name = "kivosy-app"
+main = "functions/api.js" # 백엔드 로직 경로
+
+[[d1_databases]]
+binding = "DB" 
+database_name = "kivosy_db"
+database_id = "메모해둔_UUID_값"
