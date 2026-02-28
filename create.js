@@ -9,13 +9,11 @@
   // ── Helpers ───────────────────────────────────────────────────────────────
 
   function generateId() {
-    // 8-char alphanumeric ID
     return Math.random().toString(36).slice(2, 6) +
            Math.random().toString(36).slice(2, 6);
   }
 
   function buildVoteUrl(pollId) {
-    // ONE link — no ref/UTM params. Source detected via document.referrer.
     const base = window.location.href
       .replace(/index\.html.*$/, '')
       .replace(/\/$/, '');
@@ -29,7 +27,6 @@
     return `${base}/dashboard.html?pollId=${pollId}`;
   }
 
-  // [수정] 이제 Cloudflare 서버 DB에 투표를 저장합니다.
   async function savePoll(poll) {
     try {
       const response = await fetch(`${API_URL}/api/create`, {
@@ -40,7 +37,6 @@
 
       if (!response.ok) throw new Error('서버 저장 실패');
 
-      // (선택) 로컬에도 기록을 남겨둡니다.
       const polls = JSON.parse(localStorage.getItem('vv_polls') || '[]');
       if (!polls.find(p => p.id === poll.id)) polls.unshift(poll);
       localStorage.setItem('vv_polls', JSON.stringify(polls));
@@ -49,6 +45,22 @@
     } catch (err) {
       console.error("서버 저장 중 오류 발생:", err);
       alert("서버 연결에 실패했습니다. 하지만 로컬에는 저장됩니다.");
+    }
+  }
+
+  // [추가] 데모 votes를 서버에 저장하는 함수
+  async function saveDemoVotes(pollId, votes) {
+    try {
+      const response = await fetch(`${API_URL}/api/demo-votes`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pollId, votes })
+      });
+      
+      if (!response.ok) throw new Error('데모 votes 저장 실패');
+      console.log(`데모 votes 저장 완료: ${pollId}`);
+    } catch (err) {
+      console.error("데모 votes 저장 실패:", err);
     }
   }
 
@@ -74,8 +86,6 @@
     return Promise.resolve();
   }
 
-  // ── Modal control ─────────────────────────────────────────────────────────
-
   function openModal() {
     document.getElementById('create-modal').classList.add('open');
     document.getElementById('create-result').style.display = 'none';
@@ -88,9 +98,6 @@
     document.getElementById('create-modal').classList.remove('open');
   }
 
-  // ── Creation handler ──────────────────────────────────────────────────────
-
-  // [수정] async 키워드를 추가합니다.
   async function handleCreate(title, optA, optB, category) {
     const poll = {
       id:        generateId(),
@@ -101,10 +108,8 @@
       createdAt: new Date().toISOString(),
     };
 
-    // [핵심] 서버에 저장이 완료될 때까지 기다립니다.
     await savePoll(poll);
 
-    // Render result inside modal
     const voteUrl = buildVoteUrl(poll.id);
     const dashUrl = buildDashUrl(poll.id);
 
@@ -119,9 +124,6 @@
     return poll;
   }
 
-  // ── Quick-create from cockpit textarea ────────────────────────────────────
-  // Format: "Title / Option A / Option B"
-
   function handleQuickCreate(raw) {
     const parts = raw.split('/').map(s => s.trim()).filter(Boolean);
     if (parts.length < 3) {
@@ -130,10 +132,8 @@
     }
     const [title, optA, optB] = parts;
     handleCreate(title, optA, optB, 'general');
-    openModal(); // Show modal with result
+    openModal();
   }
-
-  // ── Load demo data ────────────────────────────────────────────────────────
 
   async function loadDemoData() {
     const demoPolls = [
@@ -163,37 +163,39 @@
       },
     ];
 
-    // Demo votes for demo01
     const demo01Votes = [
-      { pollId:'demo01', choice:'Kyochon', source:{ type:'web', domain:'chat.deepseek.com', displayName:'🤖 DeepSeek', fullUrl:'https://chat.deepseek.com/', path:'/' }, timestamp: new Date().toISOString() },
-      { pollId:'demo01', choice:'BHC',     source:{ type:'web', domain:'twitter.com', displayName:'🐦 X/Twitter', fullUrl:'https://twitter.com', path:'/' }, timestamp: new Date().toISOString() },
-      { pollId:'demo01', choice:'Kyochon', source:{ type:'web', domain:'twitter.com', displayName:'🐦 X/Twitter', fullUrl:'https://twitter.com', path:'/' }, timestamp: new Date().toISOString() },
-      { pollId:'demo01', choice:'BHC',     source:{ type:'web', domain:'fmkorea.com', displayName:'🏆 FMKorea', fullUrl:'https://fmkorea.com', path:'/' }, timestamp: new Date().toISOString() },
-      { pollId:'demo01', choice:'Kyochon', source:{ type:'direct', domain:'direct', displayName:'🔗 Direct', fullUrl: null, path: null }, timestamp: new Date().toISOString() },
-      { pollId:'demo01', choice:'Kyochon', source:{ type:'web', domain:'cafe.naver.com', displayName:'🌐 Naver Cafe', fullUrl:'https://cafe.naver.com', path:'/chicken' }, timestamp: new Date().toISOString() },
-      { pollId:'demo01', choice:'BHC',     source:{ type:'web', domain:'reddit.com', displayName:'👽 Reddit', fullUrl:'https://reddit.com/r/korea', path:'/r/korea' }, timestamp: new Date().toISOString() },
+      { pollId:'demo01', choice:'Kyochon', source:{ type:'web', domain:'chat.deepseek.com', displayName:'🤖 DeepSeek', fullUrl:'https://chat.deepseek.com/', path:'/' }, timestamp: new Date().toISOString(), userAgent: 'Mozilla/5.0' },
+      { pollId:'demo01', choice:'BHC',     source:{ type:'web', domain:'twitter.com', displayName:'🐦 X/Twitter', fullUrl:'https://twitter.com', path:'/' }, timestamp: new Date().toISOString(), userAgent: 'Mozilla/5.0' },
+      { pollId:'demo01', choice:'Kyochon', source:{ type:'web', domain:'twitter.com', displayName:'🐦 X/Twitter', fullUrl:'https://twitter.com', path:'/' }, timestamp: new Date().toISOString(), userAgent: 'Mozilla/5.0' },
+      { pollId:'demo01', choice:'BHC',     source:{ type:'web', domain:'fmkorea.com', displayName:'🏆 FMKorea', fullUrl:'https://fmkorea.com', path:'/' }, timestamp: new Date().toISOString(), userAgent: 'Mozilla/5.0' },
+      { pollId:'demo01', choice:'Kyochon', source:{ type:'direct', domain:'direct', displayName:'🔗 Direct', fullUrl: null, path: null }, timestamp: new Date().toISOString(), userAgent: 'Mozilla/5.0' },
+      { pollId:'demo01', choice:'Kyochon', source:{ type:'web', domain:'cafe.naver.com', displayName:'🌐 Naver Cafe', fullUrl:'https://cafe.naver.com', path:'/chicken' }, timestamp: new Date().toISOString(), userAgent: 'Mozilla/5.0' },
+      { pollId:'demo01', choice:'BHC',     source:{ type:'web', domain:'reddit.com', displayName:'👽 Reddit', fullUrl:'https://reddit.com/r/korea', path:'/r/korea' }, timestamp: new Date().toISOString(), userAgent: 'Mozilla/5.0' },
     ];
 
-    // Demo votes for demo02
     const demo02Votes = [
-      { pollId:'demo02', choice:'손흥민', source:{ type:'web', domain:'theqoo.net', displayName:'🌸 Theqoo', fullUrl:'https://theqoo.net', path:'/' }, timestamp: new Date().toISOString() },
-      { pollId:'demo02', choice:'이강인', source:{ type:'web', domain:'dcinside.com', displayName:'🎮 DCInside', fullUrl:'https://dcinside.com', path:'/' }, timestamp: new Date().toISOString() },
-      { pollId:'demo02', choice:'손흥민', source:{ type:'direct', domain:'direct', displayName:'🔗 Direct', fullUrl: null, path: null }, timestamp: new Date().toISOString() },
+      { pollId:'demo02', choice:'손흥민', source:{ type:'web', domain:'theqoo.net', displayName:'🌸 Theqoo', fullUrl:'https://theqoo.net', path:'/' }, timestamp: new Date().toISOString(), userAgent: 'Mozilla/5.0' },
+      { pollId:'demo02', choice:'이강인', source:{ type:'web', domain:'dcinside.com', displayName:'🎮 DCInside', fullUrl:'https://dcinside.com', path:'/' }, timestamp: new Date().toISOString(), userAgent: 'Mozilla/5.0' },
+      { pollId:'demo02', choice:'손흥민', source:{ type:'direct', domain:'direct', displayName:'🔗 Direct', fullUrl: null, path: null }, timestamp: new Date().toISOString(), userAgent: 'Mozilla/5.0' },
     ];
 
-    // Demo votes for demo03
     const demo03Votes = [
-      { pollId:'demo03', choice:'Claude', source:{ type:'web', domain:'news.ycombinator.com', displayName:'🟠 Hacker News', fullUrl:'https://news.ycombinator.com', path:'/' }, timestamp: new Date().toISOString() },
-      { pollId:'demo03', choice:'ChatGPT', source:{ type:'web', domain:'reddit.com', displayName:'👽 Reddit', fullUrl:'https://reddit.com', path:'/' }, timestamp: new Date().toISOString() },
-      { pollId:'demo03', choice:'Claude', source:{ type:'direct', domain:'direct', displayName:'🔗 Direct', fullUrl: null, path: null }, timestamp: new Date().toISOString() },
+      { pollId:'demo03', choice:'Claude', source:{ type:'web', domain:'news.ycombinator.com', displayName:'🟠 Hacker News', fullUrl:'https://news.ycombinator.com', path:'/' }, timestamp: new Date().toISOString(), userAgent: 'Mozilla/5.0' },
+      { pollId:'demo03', choice:'ChatGPT', source:{ type:'web', domain:'reddit.com', displayName:'👽 Reddit', fullUrl:'https://reddit.com', path:'/' }, timestamp: new Date().toISOString(), userAgent: 'Mozilla/5.0' },
+      { pollId:'demo03', choice:'Claude', source:{ type:'direct', domain:'direct', displayName:'🔗 Direct', fullUrl: null, path: null }, timestamp: new Date().toISOString(), userAgent: 'Mozilla/5.0' },
     ];
 
-    // 서버에 저장
+    // 1. 투표 데이터 저장 (polls)
     for (const poll of demoPolls) {
       await savePoll(poll);
     }
     
-    // 로컬에 데모 투표 데이터 저장
+    // 2. votes 데이터 저장 (서버)
+    await saveDemoVotes('demo01', demo01Votes);
+    await saveDemoVotes('demo02', demo02Votes);
+    await saveDemoVotes('demo03', demo03Votes);
+    
+    // 3. 로컬에도 저장 (백업)
     localStorage.setItem('vv_votes_demo01', JSON.stringify(demo01Votes));
     localStorage.setItem('vv_votes_demo02', JSON.stringify(demo02Votes));
     localStorage.setItem('vv_votes_demo03', JSON.stringify(demo03Votes));
@@ -202,17 +204,13 @@
     showToast('Demo data loaded! ✅');
   }
 
-  // ── Event bindings ────────────────────────────────────────────────────────
-
   document.addEventListener('DOMContentLoaded', function () {
-    // Modal open/close
     document.getElementById('btn-open-create')?.addEventListener('click', openModal);
     document.getElementById('modal-close')?.addEventListener('click', closeModal);
     document.getElementById('create-modal')?.addEventListener('click', function (e) {
       if (e.target === this) closeModal();
     });
 
-    // Full create form
     document.getElementById('create-form')?.addEventListener('submit', function (e) {
       e.preventDefault();
       const title = document.getElementById('cf-title').value;
@@ -223,7 +221,6 @@
       handleCreate(title, optA, optB, cat);
     });
 
-    // Copy result link
     document.getElementById('btn-copy-result')?.addEventListener('click', function () {
       const url = document.getElementById('result-url').textContent;
       copyText(url).then(() => {
@@ -233,7 +230,6 @@
       });
     });
 
-    // Quick-create from cockpit
     const promptInput = document.getElementById('prompt-input');
     const sendBtn     = document.getElementById('send-btn');
 
@@ -250,21 +246,17 @@
         e.preventDefault();
         tryQuickCreate();
       }
-      // Auto-resize
       this.style.height = 'auto';
       this.style.height = Math.min(this.scrollHeight, 100) + 'px';
     });
 
-    // Demo data
     document.getElementById('btn-load-demo')?.addEventListener('click', loadDemoData);
 
-    // ESC to close modal
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeModal();
     });
   });
 
-  // Expose for external use
   window.VVCreate = { openModal, closeModal, buildVoteUrl, buildDashUrl };
 
 })();
