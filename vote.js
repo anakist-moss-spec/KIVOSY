@@ -99,7 +99,7 @@
     }
   }
 
-  // ── 토스트 메시지 함수 (추가) ──────────────────────────────────────────────
+  // ── 토스트 메시지 함수 ─────────────────────────────────────────────────────
   function showToast(msg) {
     const toast = document.getElementById('toast');
     if (!toast) return;
@@ -128,22 +128,19 @@
 
     // 서버에 저장
     try {
-      await fetch(`${API_URL}/api/vote`, {
+      const response = await fetch(`${API_URL}/api/vote`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(vote)
       });
+      
+      const result = await response.json();
+      return result; // 서버 응답 반환
+      
     } catch (err) {
       console.error('서버 저장 실패:', err);
+      return { success: false, error: err.message };
     }
-
-    // 로컬에도 저장 (오프라인 대비)
-    const key = `vv_votes_${pollId}`;
-    const votes = JSON.parse(localStorage.getItem(key) || '[]');
-    votes.push(vote);
-    localStorage.setItem(key, JSON.stringify(votes));
-
-    return vote;
   }
 
   function buildDashUrl(pollId) {
@@ -236,21 +233,38 @@
         
         console.log('투표 시작! poll.id:', poll.id); // [디버깅]
         
-        await saveVote(poll.id, choice);
-
-        console.log('투표 저장 완료!'); // [디버깅]
+        // [수정] 서버 응답을 받아서 처리
+        const result = await saveVote(poll.id, choice);
         
-        const dashUrl = buildDashUrl(poll.id);
-        console.log('리다이렉트 URL:', dashUrl); // [디버깅]
+        console.log('서버 응답:', result); // [디버깅]
 
-        document.getElementById('vote-success').style.display = '';
-        document.getElementById('success-label').textContent = `Voted: ${choice} 🔥`;
-        content.querySelector('.vote-buttons').style.display = 'none';
-
-        setTimeout(() => {
-          console.log('리다이렉트 실행!'); // [디버깅]
-          window.location.href = dashUrl;
-        }, 1100);
+        // [수정] 서버 응답에 따라 처리
+        if (result.success) {
+          if (result.alreadyVoted) {
+            // 이미 투표했으면 결과 페이지로 바로 이동
+            showToast('You already voted! Showing results.');
+            window.location.href = buildDashUrl(poll.id);
+          } else {
+            // 첫 투표면 성공 메시지 후 이동
+            document.getElementById('vote-success').style.display = '';
+            document.getElementById('success-label').textContent = `Voted: ${choice} 🔥`;
+            content.querySelector('.vote-buttons').style.display = 'none';
+            
+            setTimeout(() => {
+              window.location.href = buildDashUrl(poll.id);
+            }, 1100);
+          }
+        } else {
+          // 서버 에러 처리
+          showToast('Vote failed. Try again.');
+          hasVoted = false; // 재시도 가능하게
+          
+          // 버튼 다시 활성화
+          content.querySelectorAll('[data-choice]').forEach(b => {
+            b.disabled = false;
+            b.style.opacity = '1';
+          });
+        }
       });
     });
   }
