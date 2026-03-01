@@ -108,16 +108,23 @@
     setTimeout(() => toast.classList.remove('visible'), 2000);
   }
 
+  // [수정] deviceId 추가된 saveVote 함수
   async function saveVote(pollId, choice) {
     const sourceInfo = detectExactSource();
+    
+    // [추가] deviceId 가져오기
+    const deviceId = localStorage.getItem('vv_device_id') || 'unknown';
 
     const vote = {
       pollId,
       choice,
+      deviceId,  // ✅ deviceId 추가!
       source: sourceInfo,
       timestamp: new Date().toISOString(),
       userAgent: navigator.userAgent,
     };
+
+    console.log('투표 데이터 (deviceId 포함):', vote); // 디버깅
 
     // 서버에 저장
     try {
