@@ -145,13 +145,15 @@
     let filtered = [...polls];
     
     if (searchTerm) {
+      const lowerSearch = searchTerm.toLowerCase(); // 검색어를 소문자로 변환
+      
       filtered = filtered.filter(p => 
-        p.title.toLowerCase().includes(searchTerm) ||
-        p.optionA.toLowerCase().includes(searchTerm) ||
-        p.optionB.toLowerCase().includes(searchTerm)
+        p.title.toLowerCase().includes(lowerSearch) ||
+        p.optionA.toLowerCase().includes(lowerSearch) ||
+        p.optionB.toLowerCase().includes(lowerSearch)
       );
     }
-    
+        
     if (viewMode === 'myVotes') {
       const myVotedIds = await getMyVotedPollIds();
       filtered = filtered.filter(p => myVotedIds.includes(p.id));
