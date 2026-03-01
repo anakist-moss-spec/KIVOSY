@@ -226,14 +226,23 @@
         });
 
         const choice = this.dataset.choice;
+        
+        console.log('투표 시작! poll.id:', poll.id); // [디버깅]
+        
         await saveVote(poll.id, choice);
+
+        console.log('투표 저장 완료!'); // [디버깅]
+        
+        const dashUrl = buildDashUrl(poll.id);
+        console.log('리다이렉트 URL:', dashUrl); // [디버깅]
 
         document.getElementById('vote-success').style.display = '';
         document.getElementById('success-label').textContent = `Voted: ${choice} 🔥`;
         content.querySelector('.vote-buttons').style.display = 'none';
 
         setTimeout(() => {
-          window.location.href = buildDashUrl(poll.id);
+          console.log('리다이렉트 실행!'); // [디버깅]
+          window.location.href = dashUrl;
         }, 1100);
       });
     });
