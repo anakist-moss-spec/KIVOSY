@@ -9,6 +9,7 @@
   let searchTerm = '';
   let activeFilter = 'all';
   let viewMode = 'all';
+  let refreshInterval = null; // [추가] 인터벌 저장
 
   const CATEGORY_EMOJI = {
     food: '🍗', sports: '⚽', entertainment: '🎬',
@@ -221,6 +222,20 @@
     });
   }
 
+  // [추가] 리프레시 시작 함수
+  function startRefresh() {
+    if (refreshInterval) clearInterval(refreshInterval);
+    refreshInterval = setInterval(refreshFeed, 30000); // 30초로 증가!
+  }
+
+  // [추가] 리프레시 중지 함수
+  function stopRefresh() {
+    if (refreshInterval) {
+      clearInterval(refreshInterval);
+      refreshInterval = null;
+    }
+  }
+
   function escHtml(str) {
     return String(str)
       .replace(/&/g,'&amp;').replace(/</g,'&lt;')
@@ -266,9 +281,19 @@
     initFilters();
     initSearchAndView();
     refreshFeed();
+    startRefresh(); // [변경] 30초 간격 시작
   });
 
-  setInterval(refreshFeed, 10000);
+  // [추가] 페이지 가시성 변경 감지
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      stopRefresh(); // 탭이 안 보이면 중지
+    } else {
+      startRefresh(); // 다시 보이면 시작
+      refreshFeed(); // 바로 새로고침
+    }
+  });
+
   window.refreshFeed = refreshFeed;
 
 })();
