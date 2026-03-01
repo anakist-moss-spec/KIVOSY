@@ -94,51 +94,53 @@
   }
 
   // ── Share text ─────────────────────────────────────────────────────────────
-
   function generateShareText(agg) {
     const t = pct(agg.total.A, agg.total.B);
     const voteUrl = window.location.href
       .replace('dashboard.html', 'vote.html')
       .replace(/\?.*$/, '') + `?pollId=${pollId}`;
 
-    // Determine overall winner
-    const winner = t.a > t.b ? poll.optionA : t.b > t.a ? poll.optionB : null;
-    const winnerLine = winner
-      ? `🏆 Leading: ${winner} (${Math.max(t.a, t.b)}%)`
-      : `🤝 It's a tie!`;
-
-    // Bar characters for visual flair
-    function miniBar(pctA) {
-      const filled = Math.round(pctA / 10);
-      return '█'.repeat(filled) + '░'.repeat(10 - filled);
+    // 텍스트 자동 줄이기 함수 (10자로)
+    function shorten(text, maxLen = 10) {
+      if (!text) return '';
+      const str = String(text);
+      if (str.length <= maxLen) return str;
+      return str.substring(0, maxLen - 1) + '…';
     }
 
-    // Per-source: figure out which option each platform prefers
-    const topSources = agg.sortedSources.slice(0, 10);
-    const sourceLines = topSources.map(([, data]) => {
-      const sp    = pct(data.votes.A, data.votes.B);
-      const pref  = sp.a > sp.b ? poll.optionA : sp.b > sp.a ? poll.optionB : '=';
-      const arrow = sp.a > sp.b ? '→' : sp.b > sp.a ? '→' : '=';
-      return `  ${data.displayName.padEnd(22)} ${poll.optionA} ${String(sp.a + '%').padStart(4)}  ${poll.optionB} ${String(sp.b + '%').padStart(4)}  ${arrow} ${pref}`;
-    });
+    // 승자 표시 (짧게)
+    const winner = t.a > t.b ? poll.optionA : t.b > t.a ? poll.optionB : null;
+    const winnerShort = winner ? shorten(winner) : '';
+    const winnerLine = winner
+      ? `🏆 ${winnerShort} (${Math.max(t.a, t.b)}%)`
+      : `🤝 Tie!`;
+
+    // 간단한 바 (10칸)
+    const barA = '█'.repeat(Math.round(t.a / 10)) + '░'.repeat(10 - Math.round(t.a / 10));
+    const barB = '█'.repeat(Math.round(t.b / 10)) + '░'.repeat(10 - Math.round(t.b / 10));
 
     let lines = [];
-    lines.push(`🔥 "${poll.title}"`);
-    lines.push('─'.repeat(40));
-    lines.push(`${poll.optionA.toUpperCase()} ${miniBar(t.a)} ${poll.optionB.toUpperCase()}`);
-    lines.push(`${String(t.a + '%').padEnd(6)} ${''.padStart(10)} ${t.b}%`);
-    lines.push(`${winnerLine}`);
-    lines.push(`📊 Total votes: ${fmt(agg.totalVotes)}`);
-
+    lines.push(`🔥 "${shorten(poll.title, 30)}"`);
+    lines.push(`📊 ${agg.totalVotes} votes · ${winnerLine}`);
+    lines.push(`───────────────────────`);
+    lines.push(`${shorten(poll.optionA)} ${t.a}%  ${barA}`);
+    lines.push(`${shorten(poll.optionB)} ${t.b}%  ${barB}`);
+    
+    // 소스별 결과 - 원하는 형식으로!
+    const topSources = agg.sortedSources.slice(0, 5);
     if (topSources.length > 0) {
-      lines.push('');
-      lines.push(`📱 Platform breakdown (${topSources.length} source${topSources.length !== 1 ? 's' : ''}):`);
-      lines.push('─'.repeat(40));
-      lines.push(...sourceLines);
+      lines.push(`───────────────────────`);
+      lines.push(`📱 Sources:`);
+      topSources.forEach(([, data]) => {
+        const sp = pct(data.votes.A, data.votes.B);
+        // direct : Big Change 100% / Status Quo 0%
+        lines.push(`  ${data.displayName} : ${shorten(poll.optionA)} ${sp.a}% / ${shorten(poll.optionB)} ${sp.b}%`);
+      });
     }
-
-    lines.push('');
-    lines.push(`🗳️ Vote here → ${voteUrl}`);
+    
+    lines.push(`───────────────────────`);
+    lines.push(`🗳️ ${voteUrl}`);
+    
     return lines.join('\n');
   }
 
