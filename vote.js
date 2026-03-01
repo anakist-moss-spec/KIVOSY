@@ -5,6 +5,7 @@
   'use strict';
 
   const API_URL = 'https://kivosy-api.anakist-y.workers.dev';
+  let hasVoted = false;  // [추가] 중복투표 방지 플래그
 
   // ── Source Detection ───────────────────────────────────────────────────────
   function detectExactSource() {
@@ -86,7 +87,7 @@
     return `🌐 ${label}`;
   }
 
-  // ── 서버에서 Poll 데이터 가져오기 (추가됨!) ────────────────────────────────
+  // ── 서버에서 Poll 데이터 가져오기 ──────────────────────────────────────────
   async function getPollFromServer(pollId) {
     try {
       const response = await fetch(`${API_URL}/api/data`);
@@ -96,6 +97,15 @@
       console.error("서버 Poll 로드 실패:", err);
       return null;
     }
+  }
+
+  // ── 토스트 메시지 함수 (추가) ──────────────────────────────────────────────
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('visible');
+    setTimeout(() => toast.classList.remove('visible'), 2000);
   }
 
   async function saveVote(pollId, choice) {
@@ -131,11 +141,10 @@
 
   function buildDashUrl(pollId) {
     // 현재 URL에서 프로토콜 + 도메인 추출
-    const protocol = window.location.protocol;  // 'https:'
-    const hostname = window.location.hostname;  // 'kivosy.com'
+    const protocol = window.location.protocol;
+    const hostname = window.location.hostname;
     const port = window.location.port ? ':' + window.location.port : '';
     
-    // 안전하게 대시보드 URL 생성
     return `${protocol}//${hostname}${port}/dashboard.html?pollId=${pollId}`;
   }
 
@@ -201,6 +210,15 @@
 
     content.querySelectorAll('[data-choice]').forEach(btn => {
       btn.addEventListener('click', async function () {
+        // [수정] 이미 투표했는지 확인
+        if (hasVoted) {
+          showToast('Already voted!');
+          return;
+        }
+        
+        hasVoted = true;  // 투표 완료 표시
+
+        // Disable all buttons immediately
         content.querySelectorAll('[data-choice]').forEach(b => {
           b.disabled = true;
           b.style.opacity = '0.45';
@@ -222,7 +240,7 @@
   }
 
   // ── Init (서버 연동 버전) ─────────────────────────────────────────────────
-  async function init() {  // async 추가!
+  async function init() {
     const params = new URLSearchParams(window.location.search);
     const pollId = params.get('pollId');
 
@@ -231,7 +249,7 @@
       return;
     }
 
-    // [핵심 수정] 서버에서 Poll 데이터 가져오기
+    // 서버에서 Poll 데이터 가져오기
     const poll = await getPollFromServer(pollId);
     
     if (!poll) {

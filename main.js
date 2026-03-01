@@ -5,14 +5,27 @@
   'use strict';
 
   const API_URL = 'https://kivosy-api.anakist-y.workers.dev';
-  let globalData = { polls: [], votes: [] }; // 서버 데이터를 담을 그릇
+  let globalData = { polls: [], votes: [] };
+  let searchTerm = '';
+  let activeFilter = 'all';
+  let viewMode = 'all';
 
   const CATEGORY_EMOJI = {
     food: '🍗', sports: '⚽', entertainment: '🎬',
     tech: '💻', politics: '🗳️', general: '💬',
   };
 
-  // [수정] 서버에서 전체 데이터를 한 번에 가져오는 함수
+  // [신규] 기기 식별자 함수
+  function getDeviceId() {
+    let deviceId = localStorage.getItem('vv_device_id');
+    if (!deviceId) {
+      deviceId = 'dev_' + Math.random().toString(36).substring(2, 15) + 
+                 Math.random().toString(36).substring(2, 15);
+      localStorage.setItem('vv_device_id', deviceId);
+    }
+    return deviceId;
+  }
+
   async function fetchServerData() {
     try {
       const response = await fetch(`${API_URL}/api/data`);
@@ -25,13 +38,26 @@
     }
   }
 
-  // ── Data access ───────────────────────────────────────────────────────────
   function getAllPolls() {
     return globalData.polls || [];
   }
 
   function getVotesForPoll(pollId) {
     return (globalData.votes || []).filter(v => v.pollId === pollId);
+  }
+
+  // [수정] 내가 투표한 poll ID 목록 가져오기 (서버 기반)
+  async function getMyVotedPollIds() {
+    const deviceId = getDeviceId();
+    try {
+      const response = await fetch(`${API_URL}/api/my-votes?deviceId=${deviceId}`);
+      if (!response.ok) throw new Error('Failed to fetch my votes');
+      const data = await response.json();
+      return data.map(v => v.pollId);
+    } catch (err) {
+      console.error("내 투표 목록 로드 실패:", err);
+      return [];
+    }
   }
 
   function getTopSources(votes, max = 3) {
@@ -61,7 +87,6 @@
     return (age < 86400000 && votes.length >= 2) || votes.length >= 10;
   }
 
-  // ── Rendering ─────────────────────────────────────────────────────────────
   function renderPollCard(poll) {
     const votes = getVotesForPoll(poll.id);
     const pcts  = computePcts(votes, poll.optionA, poll.optionB);
@@ -115,40 +140,87 @@
   }
 
   // ── Filter/Sort ───────────────────────────────────────────────────────────
-  let activeFilter = 'all';
-
-  function sortPolls(polls) {
-    if (activeFilter === 'hot') {
-      return [...polls].sort((a, b) => {
+  async function filterAndSortPolls(polls) {
+    let filtered = [...polls];
+    
+    if (searchTerm) {
+      filtered = filtered.filter(p => 
+        p.title.toLowerCase().includes(searchTerm) ||
+        p.optionA.toLowerCase().includes(searchTerm) ||
+        p.optionB.toLowerCase().includes(searchTerm)
+      );
+    }
+    
+    if (viewMode === 'myVotes') {
+      const myVotedIds = await getMyVotedPollIds();
+      filtered = filtered.filter(p => myVotedIds.includes(p.id));
+    }
+    
+    if (viewMode === 'trending') {
+      filtered.sort((a, b) => {
         const va = getVotesForPoll(a.id).length;
         const vb = getVotesForPoll(b.id).length;
         return vb - va;
       });
-    }
-    if (activeFilter === 'new') {
-      return [...polls].sort((a, b) =>
+    } else if (activeFilter === 'hot') {
+      filtered.sort((a, b) => {
+        const va = getVotesForPoll(a.id).length;
+        const vb = getVotesForPoll(b.id).length;
+        return vb - va;
+      });
+    } else if (activeFilter === 'new') {
+      filtered.sort((a, b) =>
         new Date(b.createdAt) - new Date(a.createdAt));
+    } else {
+      filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     }
-    const cats = ['sports', 'food', 'entertainment', 'tech', 'politics'];
-    if (cats.includes(activeFilter)) {
-      return polls.filter(p => p.category === activeFilter);
-    }
-    return [...polls].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    
+    return filtered;
   }
 
-  // ── Filter chips ──────────────────────────────────────────────────────────
   function initFilters() {
     document.getElementById('filter-row')?.addEventListener('click', function (e) {
       const chip = e.target.closest('[data-filter]');
       if (!chip) return;
       activeFilter = chip.dataset.filter;
+      viewMode = 'all';
       this.querySelectorAll('.chip').forEach(c => c.classList.remove('chip-accent'));
       chip.classList.add('chip-accent');
       refreshFeed();
     });
   }
 
-  // ── Utilities ─────────────────────────────────────────────────────────────
+  function initSearchAndView() {
+    document.getElementById('search-btn')?.addEventListener('click', () => {
+      const input = document.getElementById('search-input');
+      searchTerm = input.value.trim().toLowerCase();
+      viewMode = 'all';
+      refreshFeed();
+    });
+    
+    document.getElementById('search-input')?.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') {
+        searchTerm = e.target.value.trim().toLowerCase();
+        viewMode = 'all';
+        refreshFeed();
+      }
+    });
+    
+    document.getElementById('btn-my-votes')?.addEventListener('click', () => {
+      viewMode = 'myVotes';
+      searchTerm = '';
+      document.getElementById('search-input').value = '';
+      refreshFeed();
+    });
+    
+    document.getElementById('btn-trending')?.addEventListener('click', () => {
+      viewMode = 'trending';
+      searchTerm = '';
+      document.getElementById('search-input').value = '';
+      refreshFeed();
+    });
+  }
+
   function escHtml(str) {
     return String(str)
       .replace(/&/g,'&amp;').replace(/</g,'&lt;')
@@ -159,45 +231,44 @@
     return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
-  // ── 메인 렌더링 함수 (refreshFeed만 사용) ─────────────────────────────────
   async function refreshFeed() {
-    await fetchServerData(); // 서버에서 최신 데이터 가져오기
+    await fetchServerData();
     
     const polls = getAllPolls();
-    const sorted = sortPolls(polls);
+    const filtered = await filterAndSortPolls(polls);
     const list = document.getElementById('polls-list');
     if (!list) return;
 
     list.innerHTML = '';
 
-    // 상단 카운트 업데이트
     const countEl = document.getElementById('topbar-count');
     if (countEl) countEl.textContent = `${polls.length} poll${polls.length !== 1 ? 's' : ''}`;
 
-    if (sorted.length === 0) {
+    if (filtered.length === 0) {
+      let message = 'No polls yet';
+      if (searchTerm) message = `No results for "${searchTerm}"`;
+      else if (viewMode === 'myVotes') message = 'You haven\'t voted in any polls yet';
+      
       list.innerHTML = `
         <div class="state-center" style="padding:48px 20px;">
           <div class="state-icon">🗳️</div>
-          <p class="state-title">No polls yet</p>
+          <p class="state-title">${message}</p>
           <p class="state-sub">Click "+ New Poll" to start your first battle!</p>
         </div>
       `;
       return;
     }
 
-    sorted.forEach(p => list.appendChild(renderPollCard(p)));
+    filtered.forEach(p => list.appendChild(renderPollCard(p)));
   }
 
-  // ── Init ──────────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function () {
     initFilters();
-    refreshFeed(); // 최초 로드
+    initSearchAndView();
+    refreshFeed();
   });
 
-  // 3초마다 서버에서 최신 투표 현황을 가져와서 피드를 갱신합니다.
-  setInterval(refreshFeed, 3000);
-
-  // 외부(create.js)에서 호출할 수 있게 노출
+  setInterval(refreshFeed, 10000);
   window.refreshFeed = refreshFeed;
 
 })();

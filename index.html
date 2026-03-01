@@ -123,17 +123,14 @@
   <div id="ai-voice">One link. Every source. All data.</div>
   <div id="chips-row">
     <button class="chip chip-accent" id="btn-open-create">＋ New Poll</button>
-    <button class="chip" id="btn-load-demo">👀 Load Demo Data</button>
+    <button class="chip" id="btn-my-votes">📊 My Votes</button>
+    <button class="chip" id="btn-trending">🔥 Trending</button>
   </div>
-  <div id="input-row">
-    <textarea id="prompt-input" rows="1"
-      placeholder="Quick create: type &quot;Question / Option A / Option B&quot; and press ⏎"></textarea>
-    <button id="send-btn" title="Create poll">
-      <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
-        <path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
+  <div id="input-row" style="display: flex; gap: 8px;">
+    <input type="text" id="search-input" 
+      placeholder="🔍 Search polls (chicken, pizza, Son Heung-min...)" 
+      style="flex: 1; padding: 11px 18px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface);">
+    <button id="search-btn" class="chip chip-accent">Search</button>
   </div>
 </div>
 
